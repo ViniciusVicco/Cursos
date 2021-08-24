@@ -11,19 +11,57 @@
 </h:head>
 <h:body>
 	<h:form>
-		<div>
-			<h:outputLabel value="Valor do curso: "></h:outputLabel>
-			<h:inputText></h:inputText>
-			<h:outputLabel value="Nome do curso: "></h:outputLabel>
-			<h:inputText></h:inputText>
-			<h:outputLabel value="Descrição do curso: "></h:outputLabel>
-			<h:inputTextarea></h:inputTextarea>
-			<h:outputLabel value="Valor do curso: "></h:outputLabel>
-			<h:inputText></h:inputText>
-		</div>
-		<h:commandButton value="Inserir"></h:commandButton>
-	</h:form>
+		<table class="loginTable">
 
+
+
+			<tr class="">
+				<td><h:outputLabel value="Valor: "></h:outputLabel> <h:inputText
+						id="valorInput" value="#{cursoController.curso.valor}"
+						validatorMessage="Login senha não pode ser vazio">
+
+
+					</h:inputText></td>
+
+			</tr>
+
+			<tr class="">
+				<td><h:outputLabel value="Nome: "></h:outputLabel> <h:inputText
+						id="nomeInput" value="#{cursoController.curso.nome}"
+						validatorMessage="Login senha não pode ser vazio">
+
+
+					</h:inputText></td>
+
+			</tr>
+
+			<tr class="">
+				<td><h:outputLabel value="Descrição: "></h:outputLabel> <h:inputText
+						id="descricaoInput" value="#{cursoController.curso.descricao}"
+						validatorMessage="Login senha não pode ser vazio">
+
+
+					</h:inputText></td>
+
+			</tr>
+			<tr class="">
+				<td><h:outputLabel value="Horas: "></h:outputLabel> <h:inputText
+						id="horasInput" value="#{cursoController.curso.horas}"
+						validatorMessage="Login senha não pode ser vazio">
+					</h:inputText></td>
+
+			</tr>
+			
+				<tr class="">
+				<td>
+				<h:commandButton actionListener="#{cursoController.printaCurso}" value="Printa Curso"></h:commandButton>
+				</td>
+
+			</tr>
+
+		</table>
+
+	</h:form>
 
 </h:body>
 </html>
