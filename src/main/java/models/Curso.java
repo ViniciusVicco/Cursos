@@ -1,7 +1,11 @@
 package models;
 
-public class Curso {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Curso {
+	@Id
 	private Integer id;
 	private int valor;
 	private String nome;

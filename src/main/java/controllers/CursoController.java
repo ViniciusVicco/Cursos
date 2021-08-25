@@ -3,6 +3,9 @@ import java.io.Serializable;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import models.Curso;
 @Named
@@ -28,6 +31,16 @@ public class CursoController implements Serializable {
 		
 		System.out.println(getCurso().toString());
 		
+	}
+	
+	public void insertCurso() {
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(getCurso());
+		em.getTransaction().commit();
+		System.out.print("Finalizou");
 	}
 	
 

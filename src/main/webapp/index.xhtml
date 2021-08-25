@@ -16,6 +16,15 @@
 
 
 			<tr class="">
+				<td><h:outputLabel value="id: "></h:outputLabel> <h:inputText
+						id="idInput" value="#{cursoController.curso.id}"
+						validatorMessage="Login senha não pode ser vazio">
+
+
+					</h:inputText></td>
+					</tr>
+
+			<tr class="">
 				<td><h:outputLabel value="Valor: "></h:outputLabel> <h:inputText
 						id="valorInput" value="#{cursoController.curso.valor}"
 						validatorMessage="Login senha não pode ser vazio">
@@ -54,7 +63,7 @@
 			
 				<tr class="">
 				<td>
-				<h:commandButton actionListener="#{cursoController.printaCurso}" value="Printa Curso"></h:commandButton>
+				<h:commandButton actionListener="#{cursoController.insertCurso}" value="Inserir Curso"></h:commandButton>
 				</td>
 
 			</tr>
