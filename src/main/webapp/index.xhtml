@@ -14,6 +14,10 @@
 <h:body>
 	<h:form>
 
+		<p:messages id="messages" showDetail="true" closable="true">
+
+		</p:messages>
+
 		<p:panel>
 			<f:facet name="header">
 				<h2>Cadastro de Usuário</h2>
@@ -49,6 +53,10 @@
 						actionListener="#{cursoController.limparCurso}" process="@this"
 						update="@form" />
 
+					<p:commandButton value="Remover"
+						actionListener="#{cursoController.removeCurso}" process="@this"
+						update="@form table" styleClass="ui-button-danger" />
+
 				</h:panelGrid>
 			</f:facet>
 		</p:panel>
@@ -70,11 +78,13 @@
 			<p:column headerText="Horas">
 				<h:outputText value="#{obj.horas}"></h:outputText>
 			</p:column>
-			<p:column headerText="Ação">
-				<p:commandButton value="Editar"
+			<p:column headerText="">
+				<p:commandButton value="Editar" styleClass="ui-button-warning"
 					actionListener="#{cursoController.editar(obj.id)}" process="@this"
 					update="@form table" />
+
 			</p:column>
+
 
 
 		</p:dataTable>

@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import Application.JPAUtil;
+import Application.Util;
 import models.Curso;
 
 @Named
@@ -57,7 +58,7 @@ public class CursoController implements Serializable {
 	}
 
 	public void insereCurso() {
-
+		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -65,21 +66,26 @@ public class CursoController implements Serializable {
 		em.getTransaction().commit();
 		System.out.print("Finalizou");
 		getListaCursos();
+		Util.addInfoMessage("Alterações Salvas");
 	}
 
 	public void removeCurso() {
-
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso");
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = JPAUtil.getEntityManager();
 		em.getTransaction().begin();
-		em.remove(getCurso());
+		Curso c = em.merge(getCurso());
+		em.remove(c);
 		em.getTransaction().commit();
-		System.out.print("Finalizou");
-		getListaCursos();
+		limparCurso();
+		Util.addInfoMessage(c.getNome() + "Removido");
+		listaCursos = getListaCursos();
+
+
 	}
 
 	public void limparCurso() {
 		setCurso(null);
+		Util.addInfoMessage("Dados limpados");
+		
 	}
 
 	public void editar(Integer id) {
