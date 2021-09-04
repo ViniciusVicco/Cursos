@@ -1,15 +1,21 @@
 package models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Curso {
-	@Id
+	@Id @GeneratedValue
 	private Integer id;
+	@Column(nullable = false)
 	private int valor;
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private String descricao;
+	private String nomeDescricao;
 	private int horas;
 	
 	public Integer getId() {
@@ -59,5 +65,14 @@ public class Curso {
 	public String toString() {
 		return "Curso [id=" + id + ", valor=" + valor + ", nome=" + nome + ", descrição=" + descricao + ", horas="
 				+ horas + "]";
+	}
+
+	public String getNomeDescricao() {
+		return getNome() + "" + getDescricao();
+
+	}
+
+	public void setNomeDescricao(String nomeDescricao) {
+		this.nomeDescricao = nomeDescricao;
 	}
 }

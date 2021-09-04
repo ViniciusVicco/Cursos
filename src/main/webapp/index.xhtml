@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
@@ -11,66 +13,71 @@
 </h:head>
 <h:body>
 	<h:form>
-		<table class="loginTable">
+
+		<p:panel>
+			<f:facet name="header">
+				<h2>Cadastro de Usuário</h2>
+			</f:facet>
+
+			<h:panelGrid columns="2">
+
+				<p:outputLabel value="Nome do Curso:" />
+				<p:inputText value="#{cursoController.curso.nome}" />
+
+				<p:outputLabel value="Valor:" />
+				<p:inputText value="#{cursoController.curso.valor}" />
+
+
+				<p:outputLabel value="Descrição:" />
+				<p:inputText value="#{cursoController.curso.descricao}" />
+
+				<p:outputLabel value="Horas:" />
+				<p:inputText value="#{cursoController.curso.horas}" />
+
+			</h:panelGrid>
 
 
 
-			<tr class="">
-				<td><h:outputLabel value="id: "></h:outputLabel> <h:inputText
-						id="idInput" value="#{cursoController.curso.id}"
-						validatorMessage="Login senha não pode ser vazio">
+			<f:facet name="footer">
+				<h:panelGrid columns="3">
+					<p:commandButton value="Salvar"
+						actionListener="#{cursoController.insereCurso}"
+						process="@form table" update="@form table" />
 
 
-					</h:inputText></td>
-					</tr>
+					<p:commandButton value="Limpar"
+						actionListener="#{cursoController.limparCurso}" process="@this"
+						update="@form" />
 
-			<tr class="">
-				<td><h:outputLabel value="Valor: "></h:outputLabel> <h:inputText
-						id="valorInput" value="#{cursoController.curso.valor}"
-						validatorMessage="Login senha não pode ser vazio">
+				</h:panelGrid>
+			</f:facet>
+		</p:panel>
+		<p:dataTable id="table" var="obj"
+			value="#{cursoController.listaCursos}">
+			<p:column headerText="Id">
+				<h:outputText value="#{obj.id}"></h:outputText>
+			</p:column>
+			<p:column headerText="Valor">
+				<h:outputText value="#{obj.valor}"></h:outputText>
+			</p:column>
+			<p:column headerText="Nome">
+				<h:outputText value="#{obj.nome}"></h:outputText>
+			</p:column>
+			<p:column headerText="Descrição">
+				<h:outputText value="#{obj.descricao}"></h:outputText>
+			</p:column>
+
+			<p:column headerText="Horas">
+				<h:outputText value="#{obj.horas}"></h:outputText>
+			</p:column>
+			<p:column headerText="Ação">
+				<p:commandButton value="Editar"
+					actionListener="#{cursoController.editar(obj.id)}" process="@this"
+					update="@form table" />
+			</p:column>
 
 
-					</h:inputText></td>
-
-			</tr>
-
-			<tr class="">
-				<td><h:outputLabel value="Nome: "></h:outputLabel> <h:inputText
-						id="nomeInput" value="#{cursoController.curso.nome}"
-						validatorMessage="Login senha não pode ser vazio">
-
-
-					</h:inputText></td>
-
-			</tr>
-
-			<tr class="">
-				<td><h:outputLabel value="Descrição: "></h:outputLabel> <h:inputText
-						id="descricaoInput" value="#{cursoController.curso.descricao}"
-						validatorMessage="Login senha não pode ser vazio">
-
-
-					</h:inputText></td>
-
-			</tr>
-			<tr class="">
-				<td><h:outputLabel value="Horas: "></h:outputLabel> <h:inputText
-						id="horasInput" value="#{cursoController.curso.horas}"
-						validatorMessage="Login senha não pode ser vazio">
-					</h:inputText></td>
-
-			</tr>
-			
-				<tr class="">
-				<td>
-				<h:commandButton actionListener="#{cursoController.insertCurso}" value="Inserir Curso"></h:commandButton>
-				</td>
-
-			</tr>
-
-		</table>
-
+		</p:dataTable>
 	</h:form>
-
 </h:body>
 </html>
