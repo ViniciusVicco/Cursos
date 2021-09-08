@@ -59,8 +59,8 @@ public class CursoController implements Serializable {
 
 	public void insereCurso() {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso");
-		EntityManager em = emf.createEntityManager();
+
+		EntityManager em = JPAUtil.getEntityManager();
 		em.getTransaction().begin();
 		em.merge(getCurso());
 		em.getTransaction().commit();
@@ -94,8 +94,7 @@ public class CursoController implements Serializable {
 	}
 
 	public void atualizar() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso");
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = JPAUtil.getEntityManager();
 		em.getTransaction().begin();
 		em.merge(getCurso());
 		em.getTransaction().commit();
@@ -103,8 +102,7 @@ public class CursoController implements Serializable {
 	}
 
 	public List<Curso> recuperaCursos() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Curso");
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = JPAUtil.getEntityManager();
 		TypedQuery<Curso> query = (TypedQuery<Curso>) em.createQuery("SELECT c FROM Curso as c ORDER by c.id");
 		List<Curso> results = query.getResultList();
 		return results;
