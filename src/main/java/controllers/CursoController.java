@@ -12,17 +12,20 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import Application.JPAUtil;
+import Application.RepositoryException;
 import Application.Util;
 import models.Curso;
+import repository.PessoaRepository;
 
 @Named
 @ViewScoped
-public class CursoController implements Serializable {
+public class CursoController extends Controller<Curso> implements Serializable {
+
+	// Diferença entre flush e commit -> ambos enviam os registros ao banco, ambos
+	// vem do entitymanager
 
 	private static final long serialVersionUID = -5954417187950125424L;
-
 	private List<Curso> listaCursos;
-
 	private Curso curso = new Curso();
 
 	public Curso getCurso() {
@@ -36,10 +39,14 @@ public class CursoController implements Serializable {
 		this.curso = curso;
 	}
 
-	public void printaCurso() {
+	public void pesquisar() {
+		// Aqui vai buscar resultados pelo primeiro nome
+		PessoaRepository repo = new PessoaRepository();
 
-		System.out.println(getCurso().toString());
+	}
 
+	public void confirm() {
+		Util.addInfoMessage("You have accepted");
 	}
 
 	public List<Curso> getListaCursos() {
@@ -57,48 +64,11 @@ public class CursoController implements Serializable {
 		this.listaCursos = listaCursos;
 	}
 
-	public void insereCurso() {
-		
-
-		EntityManager em = JPAUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.merge(getCurso());
-		em.getTransaction().commit();
-		System.out.print("Finalizou");
-		getListaCursos();
-		Util.addInfoMessage("Alterações Salvas");
-	}
-
-	public void removeCurso() {
-		EntityManager em = JPAUtil.getEntityManager();
-		em.getTransaction().begin();
-		Curso c = em.merge(getCurso());
-		em.remove(c);
-		em.getTransaction().commit();
-		limparCurso();
-		Util.addInfoMessage(c.getNome() + "Removido");
-		listaCursos = getListaCursos();
-
-
-	}
-
-	public void limparCurso() {
-		setCurso(null);
-		Util.addInfoMessage("Dados limpados");
-		
-	}
-
 	public void editar(Integer id) {
 		EntityManager em = JPAUtil.getEntityManager();
-		setCurso(em.find(Curso.class, id));
-	}
-
-	public void atualizar() {
-		EntityManager em = JPAUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.merge(getCurso());
-		em.getTransaction().commit();
-		System.out.print("Finalizou");
+		Curso c = em.find(Curso.class, id);
+		setEntity(c);
+		setCurso(c);
 	}
 
 	public List<Curso> recuperaCursos() {
@@ -106,6 +76,20 @@ public class CursoController implements Serializable {
 		TypedQuery<Curso> query = (TypedQuery<Curso>) em.createQuery("SELECT c FROM Curso as c ORDER by c.id");
 		List<Curso> results = query.getResultList();
 		return results;
+	}
+
+	@Override
+	public Curso getEntity() {
+		if (entity == null)
+			entity = new Curso();
+		return getCurso();
+	}
+
+	@Override
+	public void limpar() {
+		super.limpar();
+		listaCursos = null;
+		setCurso(null);
 	}
 
 }

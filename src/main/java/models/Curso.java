@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Curso {
@@ -15,6 +16,7 @@ public class Curso {
 	private String nome;
 	@Column(nullable = false)
 	private String descricao;
+	@Transient
 	private String nomeDescricao;
 	private int horas;
 	

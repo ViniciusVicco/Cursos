@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<title>Hello, World!</title>
+
+</h:head>
+<h:body>
+	<h:form id="loginForm">
+
+		<p:messages id="messages" showDetail="true" closable="true">
+
+		</p:messages>
+
+		<p:panel>
+			<f:facet name="header">
+				<h2>Fazer login</h2>
+			</f:facet>
+
+			<p:growl id="message" showDetail="true" />
+
+			<h:panelGroup columns="2">
+
+
+
+
+				<div>
+					<p:outputLabel value="login:" />
+					<p:inputText value="#{loginController.login}" />
+				</div>
+				<div>
+					<p:outputLabel value="senha:" />
+					<p:inputText value="#{loginController.password}" />
+				</div>
+
+
+
+
+			</h:panelGroup>
+
+
+
+			<f:facet name="footer">
+				<h:panelGrid columns="3">
+					<p:commandButton value="Efetuar login"
+						actionListener="#{loginController.efetuaLogin}"
+						process="loginForm" update="loginForm" />
+
+
+					<p:commandButton value="Cadastrar-se"
+						actionListener="#{loginController.redirecionaRegistro()}"
+						process="loginForm" update="loginForm" />
+
+
+
+
+				</h:panelGrid>
+			</f:facet>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
