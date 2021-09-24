@@ -33,7 +33,7 @@ public class LoginController extends Controller<Aluno> implements Serializable {
 		this.aluno = aluno;
 	}
 
-	public String efetuaLogin() {
+	public void efetuaLogin() {
 		Aluno al = null;
 		PessoaRepository repo = new PessoaRepository();
 		if (login != null && password != null) {
@@ -43,12 +43,20 @@ public class LoginController extends Controller<Aluno> implements Serializable {
 			setAluno(al);
 		}
 		if (al != null) {
-			Util.addInfoMessage("Login efetuado com sucesso");
-			return "index.xhtml";
+			if(al.isStatus()) {
+				Util.addInfoMessage("Login efetuado com sucesso");
+				Util.redirect("index.xhtml");
+			} else {
+				Util.addErrorMessage("Usuário inativado ou bloqueado");
+
+			}
+
+
 		} else {
-			Util.addInfoMessage("Não foi possivel efetuar login");
-			return null;
+			Util.addErrorMessage("Não foi possivel efetuar login, verifique suas credências");
+
 		}
+
 
 	}
 
@@ -76,8 +84,8 @@ public class LoginController extends Controller<Aluno> implements Serializable {
 		return getAluno();
 	}
 
-	public String redirecionaRegistro() {
-		return "index.xhtml";
+	public void redirecionaRegistro() {
+		Util.redirect("index.xhtml");
 	}
 
 	@Override

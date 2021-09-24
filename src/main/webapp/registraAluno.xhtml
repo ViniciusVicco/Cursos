@@ -14,7 +14,7 @@
 <h:body>
 	<h:form id="registroDeAlunoForm">
 
-		<p:messages id="messages" showDetail="true" closable="true">
+		<p:messages id="messages" showDetail="false" closable="true">
 
 		</p:messages>
 
@@ -23,7 +23,7 @@
 				<h2>Cadastrar-se como aluno</h2>
 			</f:facet>
 
-			<p:growl id="message" showDetail="true" />
+
 
 			<h:panelGroup columns="2">
 
@@ -32,29 +32,41 @@
 				<div>
 
 					<p:outputLabel value="nome:" />
-					<p:inputText value="#{registraAlunoController.aluno.nome}" />
+					<p:inputText required="true"
+						requiredMessage="Nome não pode ser vazio"
+						value="#{registraAlunoController.aluno.nome}" />
 
 				</div>
 
 				<div>
 					<p:outputLabel value="e-mail:" />
-					<p:inputText value="#{registraAlunoController.aluno.email}" />
+					<p:inputText required="true"
+						requiredMessage="Email não pode ser vazio"
+						value="#{registraAlunoController.aluno.email}" />
 				</div>
 
 				<div>
 					<p:outputLabel value="login:" />
-					<p:inputText value="#{registraAlunoController.aluno.login}" />
+					<p:inputText required="true"
+						requiredMessage="Login não pode ser vazio"
+						value="#{registraAlunoController.aluno.login}" />
 				</div>
 				<div>
 					<p:outputLabel value="senha:" />
-					<p:inputText value="#{registraAlunoController.aluno.senha}" />
+					<p:inputText required="true"
+						requiredMessage="Senha não pode ser vazia"
+						value="#{registraAlunoController.aluno.senha}" />
 				</div>
 				<div>
 					<p:outputLabel value="senha:" />
-					<p:inputText value="#{registraAlunoController.confirmaSenha}" />
+					<p:inputText required="true"
+						requiredMessage="Senha não pode ser vazia"
+						value="#{registraAlunoController.confirmaSenha}" />
 				</div>
 				<div>
-					<p:selectOneMenu value="#{registraAlunoController.aluno.genero}">
+					<p:selectOneMenu required="true"
+						requiredMessage="Selecione ao menos um gênero biologico"
+						value="#{registraAlunoController.aluno.genero}">
 						<f:selectItem itemLabel="Selecione..." />
 						<f:selectItems value="#{registraAlunoController.listaTipoPeso}"
 							var="obj" itemLabel="#{obj.label}" />

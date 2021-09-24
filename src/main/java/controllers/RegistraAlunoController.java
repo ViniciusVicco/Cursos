@@ -29,6 +29,7 @@ public class RegistraAlunoController extends Controller<Aluno> implements Serial
 	public void registra() {
 		Aluno alunoRef = new Aluno();
 		alunoRef = getAluno();
+		alunoRef.setStatus(true);
 		alunoRef.setSenha(Util.hash(alunoRef.getLogin() + alunoRef.getSenha()));
 		setAluno(alunoRef);
 		salvar();

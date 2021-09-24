@@ -14,7 +14,7 @@
 <h:body>
 	<h:form id="loginForm">
 
-		<p:messages id="messages" showDetail="true" closable="true">
+		<p:messages id="messages" showDetail="false" closable="true">
 
 		</p:messages>
 
@@ -23,7 +23,7 @@
 				<h2>Fazer login</h2>
 			</f:facet>
 
-			<p:growl id="message" showDetail="true" />
+
 
 			<h:panelGroup columns="2">
 
@@ -50,12 +50,12 @@
 				<h:panelGrid columns="3">
 					<p:commandButton value="Efetuar login"
 						actionListener="#{loginController.efetuaLogin}"
-						process="loginForm" update="loginForm" />
+						process="@all" update="@all" />
 
 
 					<p:commandButton value="Cadastrar-se"
-						actionListener="#{loginController.redirecionaRegistro()}"
-						process="loginForm" update="loginForm" />
+						actionListener="#{loginController.redirecionaRegistro}"
+						process="@all" update="@all" />
 
 
 
