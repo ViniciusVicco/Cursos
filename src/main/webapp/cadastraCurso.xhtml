@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:head>
+			<link href="resources/css/bootstrap.css" rel="stylesheet" />
+		</h:head>
+		<h:body>
+			<h:form>
+
+				<p:messages id="messages" showDetail="true" closable="true">
+
+				</p:messages>
+
+				<p:panel>
+					<f:facet name="header">
+						<h2>Cadastro de Cursos</h2>
+					</f:facet>
+
+					<p:growl id="message" showDetail="true" />
+
+					<h:panelGroup columns="2">
+
+
+
+						<div>
+
+							<p:outputLabel value="Nome do Curso:" />
+							<p:inputText value="#{cursoController.curso.nome}" />
+
+						</div>
+
+						<div>
+							<p:outputLabel value="Valor:" />
+							<p:inputText value="#{cursoController.curso.valor}" />
+						</div>
+
+						<div>
+							<p:outputLabel value="Descrição:" />
+							<p:inputText value="#{cursoController.curso.descricao}" />
+						</div>
+						<div>
+							<p:outputLabel value="Horas:" />
+							<p:inputText value="#{cursoController.curso.horas}" />
+						</div>
+					</h:panelGroup>
+
+
+
+					<f:facet name="footer">
+						<h:panelGrid columns="3">
+							<p:commandButton value="Salvar"
+								actionListener="#{cursoController.salvar}" process="@form table"
+								update="@form table" />
+
+
+							<p:commandButton value="Limpar"
+								actionListener="#{cursoController.limpar}" process="@this"
+								update="@form" />
+
+
+
+							<p:commandButton value="Remover"
+								actionListener="#{cursoController.excluir}" process="@this"
+								update="@form table" styleClass="ui-button-danger" />
+
+						</h:panelGrid>
+					</f:facet>
+				</p:panel>
+				<p:dataTable id="table" var="obj"
+					value="#{cursoController.listaCursos}">
+					<p:column headerText="Id">
+						<h:outputText value="#{obj.id}"></h:outputText>
+					</p:column>
+					<p:column headerText="Valor">
+						<h:outputText value="#{obj.valor}"></h:outputText>
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{obj.nome}"></h:outputText>
+					</p:column>
+					<p:column headerText="Descrição">
+						<h:outputText value="#{obj.descricao}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Horas">
+						<h:outputText value="#{obj.horas}"></h:outputText>
+					</p:column>
+					<p:column headerText="">
+						<p:commandButton value="Editar" styleClass="ui-button-warning"
+							actionListener="#{cursoController.editar(obj.id)}"
+							process="@this" update="@form table" />
+
+					</p:column>
+
+
+
+				</p:dataTable>
+			</h:form>
+
+			<p:dialog header="Confirma a remoção ?" widgetVar="dlg"
+				minHeight="40" width="350" showEffect="fade">
+				<p class="p-m-0">Lorem ipsum dolor sit amet, consectetur
+					adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+					dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+					exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate
+					velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+					mollit anim id est laborum.</p>
+				<f:facet name="footer">
+					<p:commandButton type="button" value="No"
+						styleClass="ui-button-flat p-mr-2" style="width: 6rem" />
+					<p:commandButton type="button" value="Yes" style="width: 5rem" />
+				</f:facet>
+			</p:dialog>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

@@ -29,7 +29,7 @@
 					<h:panelGrid columns="2" style="width:100%;"
 						columnClasses="one, two">
 						<h:panelGroup layout="block">
-							<p:fieldset legend="Cadastre-se como aluno" id="custFieldset"
+							<p:fieldset legend="Cadastre-se como professor" id="custFieldset"
 								style="text-align: center;">
 							</p:fieldset>
 
@@ -39,7 +39,7 @@
 								<p:outputLabel value="nome:" />
 								<p:inputText required="true"
 									requiredMessage="Nome não pode ser vazio"
-									value="#{registraAlunoController.aluno.nome}" />
+									value="#{registraProfessorController.professor.nome}" />
 
 							</div>
 
@@ -47,20 +47,20 @@
 								<p:outputLabel value="e-mail:" />
 								<p:inputText required="true"
 									requiredMessage="Email não pode ser vazio"
-									value="#{registraAlunoController.aluno.email}" />
+									value="#{registraProfessorController.professor.email}" />
 							</div>
 
 							<div>
 								<p:outputLabel value="login:" />
 								<p:inputText required="true"
 									requiredMessage="Login não pode ser vazio"
-									value="#{registraAlunoController.aluno.login}" />
+									value="#{registraProfessorController.professor.login}" />
 							</div>
 							<div>
 								<p:outputLabel value="senha:" />
 								<p:inputText required="true"
 									requiredMessage="Senha não pode ser vazia"
-									value="#{registraAlunoController.aluno.senha}" />
+									value="#{registraProfessorController.professor.senha}" />
 							</div>
 							<div>
 								<p:outputLabel value="senha:" />
@@ -71,7 +71,7 @@
 							<div>
 								<p:selectOneMenu required="true"
 									requiredMessage="Selecione ao menos um gênero biologico"
-									value="#{registraAlunoController.aluno.genero}">
+									value="#{registraProfessorController.professor.genero}">
 									<f:selectItem itemLabel="Selecione..." />
 									<f:selectItems value="#{registraAlunoController.listaTipoPeso}"
 										var="obj" itemLabel="#{obj.label}" />

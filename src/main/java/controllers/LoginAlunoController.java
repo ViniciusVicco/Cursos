@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import Application.JPAUtil;
+import Application.Session;
 import Application.Util;
 import models.Aluno;
 
@@ -16,7 +17,7 @@ import repository.PessoaRepository;
 
 @Named
 @ViewScoped
-public class LoginController extends Controller<Aluno> implements Serializable {
+public class LoginAlunoController extends Controller<Aluno> implements Serializable {
 
 	private static final long serialVersionUID = 7929357021320392268L;
 
@@ -43,20 +44,20 @@ public class LoginController extends Controller<Aluno> implements Serializable {
 			setAluno(al);
 		}
 		if (al != null) {
-			if(al.isStatus()) {
+			if (al.isStatus()) {
 				Util.addInfoMessage("Login efetuado com sucesso");
-				Util.redirect("index.xhtml");
+				Session.getInstance().set("user", al);
+				System.out.println(Session.getInstance().get("user"));
+				Util.redirect("listaCursos.xhtml");
 			} else {
 				Util.addErrorMessage("Usuário inativado ou bloqueado");
 
 			}
 
-
 		} else {
 			Util.addErrorMessage("Não foi possivel efetuar login, verifique suas credências");
 
 		}
-
 
 	}
 
@@ -85,7 +86,7 @@ public class LoginController extends Controller<Aluno> implements Serializable {
 	}
 
 	public void redirecionaRegistro() {
-		Util.redirect("index.xhtml");
+		Util.redirect("registroRedireciona.xhtml");
 	}
 
 	@Override
