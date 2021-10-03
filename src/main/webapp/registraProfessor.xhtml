@@ -7,7 +7,7 @@
 <ui:composition template="/template.xhtml">
 	<ui:define name="conteudo">
 		<h:body>
-			<h:form id="registroDeAlunoForm">
+			<h:form id="registroDeProf">
 
 				<p:messages id="messages" showDetail="false" closable="true">
 
@@ -66,14 +66,14 @@
 								<p:outputLabel value="senha:" />
 								<p:inputText required="true"
 									requiredMessage="Senha não pode ser vazia"
-									value="#{registraAlunoController.confirmaSenha}" />
+									value="#{registraProfessorController.confirmaSenha}" />
 							</div>
 							<div>
 								<p:selectOneMenu required="true"
 									requiredMessage="Selecione ao menos um gênero biologico"
 									value="#{registraProfessorController.professor.genero}">
 									<f:selectItem itemLabel="Selecione..." />
-									<f:selectItems value="#{registraAlunoController.listaTipoPeso}"
+									<f:selectItems value="#{registraProfessorController.listaGenero}"
 										var="obj" itemLabel="#{obj.label}" />
 								</p:selectOneMenu>
 
@@ -85,13 +85,13 @@
 					<f:facet name="footer">
 						<h:panelGrid columns="3">
 							<p:commandButton value="Cadastrar-se"
-								actionListener="#{registraAlunoController.registra}"
-								process="registroDeAlunoForm" update="registroDeAlunoForm" />
+								actionListener="#{registraProfessorController.registra()}"
+								process="registroDeProf" update="registroDeProf" />
 
 
 							<p:commandButton value="Limpar"
 								actionListener="#{registraAlunoController.limpar}"
-								process="registroDeAlunoForm" update="registroDeAlunoForm" />
+								process="registroDeProf" update="registroDeProf" />
 
 
 

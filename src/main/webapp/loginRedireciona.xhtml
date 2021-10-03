@@ -14,10 +14,10 @@
 					<div class="d-flex justify-content-around">
 						<div class="d-flex justify-content-around">
 							<div class="d-flex flex-column">
-								<h4>Cadastre-se como aluno</h4>
+								<h4>Fazer login como aluno</h4>
 								<p:commandLink update="@all" process="@this"
 									style="padding-top: 50px; padding-bottom: 50px"
-									actionListener="#{registroRedirectController.redirecionarEstudante()}">
+									actionListener="#{loginRedirecionaController.redirecionarEstudante()}">
 									<button>
 										<IMG alt="imagem" src="resources/images/student.jpg"
 											style="width: 400px;" />
@@ -27,8 +27,8 @@
 						</div>
 						<div class="d-flex justify-content-around">
 							<div class="d-flex flex-column">
-								<h4>Cadastre-se como professor</h4>
-								<p:commandLink style="padding-top: 50px; padding-bottom: 50px" actionListener="#{registroRedirectController.redirecionarProfessor()}">
+								<h4>Fazer login como professor</h4>
+								<p:commandLink style="padding-top: 50px; padding-bottom: 50px">
 									<button>
 										<IMG alt="imagem" src="resources/images/professor.jpg"
 											style="width: 400px;" />

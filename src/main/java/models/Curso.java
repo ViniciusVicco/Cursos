@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class Curso {
 	@Transient
 	private String nomeDescricao;
 	private int horas;
+	private Date datacriacao;
 	
 	public Integer getId() {
 		return id;
@@ -76,5 +79,15 @@ public class Curso {
 
 	public void setNomeDescricao(String nomeDescricao) {
 		this.nomeDescricao = nomeDescricao;
+	}
+
+	public Date getDatacriacao() {
+		if(datacriacao == null)
+			datacriacao = new Date(System.currentTimeMillis());
+		return datacriacao;
+	}
+
+	public void setDatacriacao(Date datacriacao) {
+		this.datacriacao = datacriacao;
 	}
 }

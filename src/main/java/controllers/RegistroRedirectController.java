@@ -21,6 +21,7 @@ public class RegistroRedirectController implements Serializable {
 	}
 
 	public void redirecionarProfessor() {
+		Util.redirect("registraProfessor.xhtml");
 
 	}
 

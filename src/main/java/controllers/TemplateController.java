@@ -63,7 +63,7 @@ public class TemplateController implements Serializable {
 	}
 
 	public void redirecionaLogin() {
-		Util.redirect("login.xhtml");
+		Util.redirect("loginRedireciona.xhtml");
 	}
 
 	public void sair() {

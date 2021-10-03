@@ -48,7 +48,7 @@ public class LoginAlunoController extends Controller<Aluno> implements Serializa
 				Util.addInfoMessage("Login efetuado com sucesso");
 				Session.getInstance().set("user", al);
 				System.out.println(Session.getInstance().get("user"));
-				Util.redirect("listaCursos.xhtml");
+				Util.redirect("cadastraCurso.xhtml");
 			} else {
 				Util.addErrorMessage("Usuário inativado ou bloqueado");
 
