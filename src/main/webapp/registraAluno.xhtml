@@ -26,7 +26,7 @@
 }
 </style>
 
-					<h:panelGrid columns="2" style="width:100%;"
+					<!--  	<h:panelGrid columns="2" style="width:100%;"
 						columnClasses="one, two">
 						<h:panelGroup layout="block">
 							<p:fieldset legend="Cadastre-se como aluno" id="custFieldset"
@@ -79,6 +79,52 @@
 
 							</div>
 						</h:panelGroup>
+
+					</h:panelGrid>
+					-->
+
+					<h:panelGrid columns="2">
+						<p:outputLabel value="nome" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText value="#{registraAlunoController.aluno.nome}" />
+							</div>
+						</h:panelGroup>
+						<p:outputLabel value="e-mail" />
+						<p:inputText value="#{registraAlunoController.aluno.email}" />
+
+						<p:outputLabel value="cpf" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText value="#{registraAlunoController.aluno.cpf}" />
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="login:" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText value="#{registraAlunoController.aluno.login}" />
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Senha" />
+						<p:inputText value="#{registraAlunoController.aluno.senha}" />
+
+						<p:outputLabel value="Senha" />
+						<p:inputText value="#{registraAlunoController.confirmaSenha}" />
+
+						<div class="ui-inputgroup">
+							<p:selectOneMenu required="true"
+								requiredMessage="Selecione ao menos um gênero biologico"
+								value="#{registraAlunoController.aluno.genero}">
+								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItems value="#{registraAlunoController.listaTipoPeso}"
+									var="obj" itemLabel="#{obj.label}" />
+							</p:selectOneMenu>
+
+						</div>
+
+
 
 					</h:panelGrid>
 

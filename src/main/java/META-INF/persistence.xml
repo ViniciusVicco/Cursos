@@ -7,8 +7,11 @@
 
 		<class>models.Administrador</class>
 		<class>models.Aluno</class>
+		<class>models.Cartao</class>
 		<class>models.Curso</class>
+		<class>models.FormaPagamento</class>
 		<class>models.Pessoa</class>
+		<class>models.Pix</class>
 		<class>models.Professor</class>
 
 		<properties>

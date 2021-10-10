@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:body>
+			<h:form id="registroDeProf">
+
+				<p:messages id="messages" showDetail="false" closable="true">
+
+				</p:messages>
+
+
+
+
+				<style>
+.one {
+	width: 70%;
+}
+
+.two {
+	width: 30%;
+}
+
+.paddingOneBoxes {
+	
+}
+
+.paddingInput {
+	padding: 2px 2em 0em 0em;
+}
+</style>
+
+				<p:panel>
+					<f:facet name="header">
+						<h2>Cadastro de Usuário</h2>
+					</f:facet>
+
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Primeiro Nome:" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:185px"
+									value="#{cartaoController.cartao.numero}" />
+								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
+
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Sobrenome:" />
+						<p:inputText value="#{cartaoController.cartao.cvv}" />
+
+						<p:outputLabel value="Estado:" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:185px"
+									value="#{cartaoController.cartao.apelido}" />
+								<p:commandButton icon="pi pi-search"
+									styleClass="ui-button-warning"
+									actionListener="#{usuarioController.abrirEstadoListing}">
+									<p:ajax event="dialogReturn"
+										listener="#{usuarioController.obterEstadoListing}"
+										update="@form" />
+								</p:commandButton>
+							</div>
+						</h:panelGroup>
+
+
+
+					</h:panelGrid>
+				</p:panel>
+
+
+			</h:form>
+
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

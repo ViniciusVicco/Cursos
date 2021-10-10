@@ -1,6 +1,5 @@
 package models;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -15,6 +14,16 @@ public class Pessoa {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	@Column(nullable = false)
+	private String cpf;
 	@Column(nullable = false)
 	private String nome;
 	@Column(nullable = false)

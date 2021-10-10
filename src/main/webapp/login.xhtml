@@ -19,26 +19,18 @@
 					</f:facet>
 
 
-
-					<h:panelGroup columns="2">
-
-
-
-
-						<div>
-							<p:outputLabel value="login:" />
-							<p:inputText value="#{loginAlunoController.login}" />
-						</div>
-						<div>
-							<p:outputLabel value="senha:" />
-							<p:inputText value="#{loginAlunoController.password}" />
-						</div>
+					<h:panelGrid columns="2">
+						<p:outputLabel value="login:" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText value="#{loginAlunoController.login}" />
+							</div>
+						</h:panelGroup>
+						<p:outputLabel value="Senha" />
+						<p:inputText value="#{loginAlunoController.password}" />
 
 
-
-
-					</h:panelGroup>
-
+					</h:panelGrid>
 
 
 					<f:facet name="footer">
