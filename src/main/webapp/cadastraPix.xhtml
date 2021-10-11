@@ -36,32 +36,34 @@
 
 				<p:panel>
 					<f:facet name="header">
-						<h2>Cadastrar cartões</h2>
+						<h2>Cadastrar Pix</h2>
 					</f:facet>
 
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Número do Cartão" />
+						<p:outputLabel value="Primeiro Nome:" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText style="width:185px"
-									value="#{cartaoController.cartao.numero}" required="true"
-									requiredMessage="Número do cartão obrigatório" />
+								<p:inputText style="width:185px" />
 								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
 									<onclick="PF('dlg').show()" -->
 
 							</div>
 						</h:panelGroup>
-						<p:outputLabel value="Cvv Cartão" />
-						<h:panelGroup>
-							<p:inputText value="#{cartaoController.cartao.cvv}" />
-						</h:panelGroup>
 
-						<p:outputLabel value="Apelido do cartão" />
+						<p:outputLabel value="Sobrenome:" />
+						<p:inputText />
+
+						<p:outputLabel value="Estado:" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText style="width:185px"
-									value="#{cartaoController.cartao.apelido}" />
-
+								<p:inputText style="width:185px" />
+								<p:commandButton icon="pi pi-search"
+									styleClass="ui-button-warning"
+									actionListener="#{usuarioController.abrirEstadoListing}">
+									<p:ajax event="dialogReturn"
+										listener="#{usuarioController.obterEstadoListing}"
+										update="@form" />
+								</p:commandButton>
 							</div>
 						</h:panelGroup>
 
