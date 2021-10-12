@@ -7,7 +7,7 @@
 <ui:composition template="/template.xhtml">
 	<ui:define name="conteudo">
 		<h:body>
-			<h:form id="registroDeProf">
+			<h:form id="registraPix">
 
 				<p:messages id="messages" showDetail="false" closable="true">
 
@@ -40,40 +40,37 @@
 					</f:facet>
 
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Primeiro Nome:" />
+						<p:outputLabel value="Chave * " />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText style="width:185px" />
+								<p:inputText style="width:250px"
+									value="#{cartaoController.cartao.numero}" required="true"
+									requiredMessage="Número do cartão obrigatório" />
 								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
 									<onclick="PF('dlg').show()" -->
 
 							</div>
 						</h:panelGroup>
 
-						<p:outputLabel value="Sobrenome:" />
-						<p:inputText />
 
-						<p:outputLabel value="Estado:" />
-						<h:panelGroup>
-							<div class="ui-inputgroup">
-								<p:inputText style="width:185px" />
-								<p:commandButton icon="pi pi-search"
-									styleClass="ui-button-warning"
-									actionListener="#{usuarioController.abrirEstadoListing}">
-									<p:ajax event="dialogReturn"
-										listener="#{usuarioController.obterEstadoListing}"
-										update="@form" />
-								</p:commandButton>
-							</div>
-						</h:panelGroup>
+
+
+
+
 
 
 
 					</h:panelGrid>
+					<div style="padding-top: 50px">
+						<p:commandButton value="Cadastrar Cartão"
+							actionListener="#{cartaoController.salvar()}"
+							process="registraPix" update="registraPix"></p:commandButton>
+					</div>
 				</p:panel>
 
 
 			</h:form>
+
 
 		</h:body>
 	</ui:define>

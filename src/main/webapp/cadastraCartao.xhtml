@@ -61,7 +61,7 @@
 						</h:panelGroup>
 
 
-						<p:outputLabel value="Vencimento * " />
+						<p:outputLabel value="Validade * " />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
 								<p:inputText style="width:250px"
@@ -84,8 +84,8 @@
 					</h:panelGrid>
 					<div style="padding-top: 50px">
 						<p:commandButton value="Cadastrar Cartão"
-							actionListener="#{cartaoController.salvar()}" process="@this"
-							update="registraCartao"></p:commandButton>
+							actionListener="#{cartaoController.salvar()}"
+							process="registraCartao" update="registraCartao"></p:commandButton>
 					</div>
 				</p:panel>
 
