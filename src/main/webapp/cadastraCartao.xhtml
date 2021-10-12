@@ -7,7 +7,7 @@
 <ui:composition template="/template.xhtml">
 	<ui:define name="conteudo">
 		<h:body>
-			<h:form id="registroDeProf">
+			<h:form id="registraCartao">
 
 				<p:messages id="messages" showDetail="false" closable="true">
 
@@ -40,10 +40,10 @@
 					</f:facet>
 
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Número do Cartão" />
+						<p:outputLabel value="Número do Cartão * " />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText style="width:185px"
+								<p:inputText style="width:250px"
 									value="#{cartaoController.cartao.numero}" required="true"
 									requiredMessage="Número do cartão obrigatório" />
 								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
@@ -51,15 +51,29 @@
 
 							</div>
 						</h:panelGroup>
-						<p:outputLabel value="Cvv Cartão" />
+						<p:outputLabel value="Cvv Cartão * " />
 						<h:panelGroup>
-							<p:inputText value="#{cartaoController.cartao.cvv}" />
+							<div class="ui-inputgroup">
+
+								<p:inputText style="width:250px"
+									value="#{cartaoController.cartao.cvv}" />
+							</div>
+						</h:panelGroup>
+
+
+						<p:outputLabel value="Vencimento * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{cartaoController.cartao.validade}" />
+
+							</div>
 						</h:panelGroup>
 
 						<p:outputLabel value="Apelido do cartão" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText style="width:185px"
+								<p:inputText style="width:250px"
 									value="#{cartaoController.cartao.apelido}" />
 
 							</div>
@@ -68,6 +82,11 @@
 
 
 					</h:panelGrid>
+					<div style="padding-top: 50px">
+						<p:commandButton value="Cadastrar Cartão"
+							actionListener="#{cartaoController.salvar()}" process="@this"
+							update="registraCartao"></p:commandButton>
+					</div>
 				</p:panel>
 
 

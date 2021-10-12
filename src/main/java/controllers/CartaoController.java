@@ -14,16 +14,15 @@ import models.Pix;
 public class CartaoController extends Controller<Cartao> implements Serializable {
 
 	private static final long serialVersionUID = 6027078781434152972L;
-	
 
 	private Cartao cartao;
-	
-	
+
 	public Cartao getCartao() {
-		if(cartao == null)
+		if (cartao == null)
 			cartao = new Cartao();
 		return cartao;
 	}
+
 	public void setCartao(Cartao cartao) {
 		this.cartao = cartao;
 	}
@@ -34,6 +33,5 @@ public class CartaoController extends Controller<Cartao> implements Serializable
 			entity = new Cartao();
 		return getCartao();
 	}
-	
 
 }
