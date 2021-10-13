@@ -66,6 +66,18 @@ public class TemplateController implements Serializable {
 		Util.redirect("loginRedireciona.xhtml");
 	}
 
+	public void redirecionaPix() {
+		Util.redirect("cadastraPix.xhtml");
+	}
+
+	public void redirecionaCartao() {
+		Util.redirect("cadastraCartao.xhtml");
+	}
+
+	public void redirecionaCurso() {
+		Util.redirect("cadastraCurso.xhtml");
+	}
+
 	public void sair() {
 		Session.getInstance().set("user", null);
 		Util.redirect("listaCursos.xhtml");
