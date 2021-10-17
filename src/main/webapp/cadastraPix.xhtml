@@ -44,7 +44,7 @@
 						<h:panelGroup>
 							<div class="ui-inputgroup">
 								<p:inputText style="width:250px"
-									value="#{cartaoController.cartao.numero}" required="true"
+									value="#{pixController.pix.chave}" required="true"
 									requiredMessage="Número do cartão obrigatório" />
 								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
 									<onclick="PF('dlg').show()" -->
@@ -63,10 +63,26 @@
 					</h:panelGrid>
 					<div style="padding-top: 50px">
 						<p:commandButton value="Cadastrar Cartão"
-							actionListener="#{cartaoController.salvar()}"
-							process="registraPix" update="registraPix"></p:commandButton>
+							actionListener="#{pixController.salvar()}" process="registraPix"
+							update="registraPix"></p:commandButton>
 					</div>
 				</p:panel>
+
+				<p:dataTable id="table" var="obj" value="#{pixController.listaPix}">
+
+					<p:column headerText="Id">
+						<h:outputText value="#{obj.id}"></h:outputText>
+					</p:column>
+					<p:column headerText="Chave">
+						<h:outputText value="#{obj.chave}"></h:outputText>
+					</p:column>
+
+
+
+
+
+				</p:dataTable>
+
 
 
 			</h:form>

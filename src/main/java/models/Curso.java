@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Curso {
 	@Transient
 	private String nomeDescricao;
 	private int horas;
-	private Date datacriacao;
+	private LocalDate datacriacao;
 	
 	public Integer getId() {
 		return id;
@@ -81,13 +82,13 @@ public class Curso {
 		this.nomeDescricao = nomeDescricao;
 	}
 
-	public Date getDatacriacao() {
-		if(datacriacao == null)
-			datacriacao = new Date(System.currentTimeMillis());
+	public LocalDate getDatacriacao() {
 		return datacriacao;
 	}
 
-	public void setDatacriacao(Date datacriacao) {
+	public void setDatacriacao(LocalDate datacriacao) {
 		this.datacriacao = datacriacao;
 	}
+
+
 }

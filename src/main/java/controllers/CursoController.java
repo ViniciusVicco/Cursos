@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +79,14 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		TypedQuery<Curso> query = (TypedQuery<Curso>) em.createQuery("SELECT c FROM Curso as c ORDER by c.id");
 		List<Curso> results = query.getResultList();
 		return results;
+	}
+	
+	@Override
+	public void salvar() {
+		// TODO Auto-generated method stub
+		LocalDate localDate = LocalDate.now();
+		curso.setDatacriacao(localDate);
+		super.salvar();
 	}
 
 	@Override

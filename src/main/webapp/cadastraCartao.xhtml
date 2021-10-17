@@ -89,6 +89,35 @@
 					</div>
 				</p:panel>
 
+				<p:dataTable id="table" var="obj"
+					value="#{cartaoController.listaCartao}">
+
+					<p:column headerText="Id">
+						<h:outputText value="#{obj.id}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Número">
+						<h:outputText value="#{obj.numero}"></h:outputText>
+					</p:column>
+					<p:column headerText="Cvv">
+						<h:outputText value="#{obj.cvv}"></h:outputText>
+					</p:column>
+					<p:column headerText="Validade">
+						<h:outputText value="#{obj.validade}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Apelido">
+						<h:outputText value="#{obj.apelido}"></h:outputText>
+					</p:column>
+					<p:column headerText="">
+
+
+					</p:column>-->
+
+
+
+				</p:dataTable>
+
 
 			</h:form>
 

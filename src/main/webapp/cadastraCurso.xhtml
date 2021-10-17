@@ -18,38 +18,49 @@
 
 				<p:panel>
 					<f:facet name="header">
-						<h2>Cadastro de Cursos</h2>
+						<h2>Cadastrar cartões</h2>
 					</f:facet>
 
-					<p:growl id="message" showDetail="true" />
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Nome do curso * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{cursoController.curso.nome}" required="true"
+									requiredMessage="Número do cartão obrigatório" />
+								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
 
-					<h:panelGroup columns="2">
+							</div>
+						</h:panelGroup>
+						<p:outputLabel value="Descrição * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
 
-
-
-						<div>
-
-							<p:outputLabel value="Nome do Curso:" />
-							<p:inputText value="#{cursoController.curso.nome}" />
-
-						</div>
-
-						<div>
-							<p:outputLabel value="Valor:" />
-							<p:inputText value="#{cursoController.curso.valor}" />
-						</div>
-
-						<div>
-							<p:outputLabel value="Descrição:" />
-							<p:inputText value="#{cursoController.curso.descricao}" />
-						</div>
-						<div>
-							<p:outputLabel value="Horas:" />
-							<p:inputText value="#{cursoController.curso.horas}" />
-						</div>
-					</h:panelGroup>
+								<p:inputText style="width:250px"
+									value="#{cursoController.curso.descricao}" />
+							</div>
+						</h:panelGroup>
 
 
+						<p:outputLabel value="Horas * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{cursoController.curso.horas}" />
+
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Valor *" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{cursoController.curso.valor}" />
+
+							</div>
+						</h:panelGroup>
+					</h:panelGrid>
 
 					<f:facet name="footer">
 						<h:panelGrid columns="3">
