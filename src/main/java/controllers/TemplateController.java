@@ -9,6 +9,7 @@ import Application.Session;
 import Application.Util;
 import models.Administrador;
 import models.Aluno;
+import models.Pessoa;
 import models.Professor;
 
 @Named
@@ -31,35 +32,28 @@ public class TemplateController implements Serializable {
 
 	public boolean checaAluno() {
 		boolean isAluno = false;
-		if (Session.getInstance().get("user") != null) {
-			if (Session.getInstance().get("user") instanceof Aluno) {
-				isAluno = true;
-			}
-		}
-
+		if (checaSessao())
+			isAluno = Session.getInstance().get("user").getClass().equals(Aluno.class);
 		return isAluno;
+
 	}
 
 	public boolean checaProfessor() {
 		boolean isProfessor = false;
-		if (Session.getInstance().get("user") != null) {
-			if (Session.getInstance().get("user") instanceof Professor) {
-				isProfessor = true;
-			}
-		}
 
+		if (checaSessao())
+			isProfessor = Session.getInstance().get("user").getClass().equals(Professor.class);
 		return isProfessor;
+
 	}
 
 	public boolean checaAdmin() {
 		boolean isAdmin = false;
-		if (Session.getInstance().get("user") != null) {
-			if (Session.getInstance().get("user") instanceof Administrador) {
-				isAdmin = true;
-			}
-		}
 
+		if (checaSessao())
+			isAdmin = Session.getInstance().get("user").getClass().equals(Administrador.class);
 		return isAdmin;
+
 	}
 
 	public void redirecionaLogin() {

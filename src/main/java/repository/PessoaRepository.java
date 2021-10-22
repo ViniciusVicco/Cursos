@@ -8,41 +8,47 @@ import javax.persistence.Query;
 import Application.RepositoryException;
 import models.Aluno;
 import models.Curso;
+import models.Pessoa;
 
-public class PessoaRepository extends Repository<Curso> {
+public class PessoaRepository extends Repository<Pessoa> {
 
-	public List<Curso> findByNome(String nome) throws RepositoryException {
-		List<Curso> resultList = null;
+	List<Pessoa> pessoaList = null;
+	Pessoa pessoa = null;
+
+//	public Pessoa login(String login, String password) {
+//
+//		try {
+//			System.out.print("Chegou aqui");
+//			EntityManager em = getEntityManager();
+//			Query query = em.createQuery("SELECT p FROM Pessoa as p where p.login = :login and p.senha = :password");
+//			query.setParameter("login", login);
+//			query.setParameter("password", password);
+//			pessoa = (Pessoa) query.getResultList().get(0);
+//			System.out.print("Chegou aqui");
+//		} catch (Exception e) {
+//			System.out.print("Chegou aqui");
+//			new RepositoryException("Login ou senha incorretos");
+//			e.printStackTrace();
+//		}
+//		return pessoa;
+//
+//	}
+
+	public Pessoa buscaPessoa(String login, String senha) {
+
 		try {
-
 			EntityManager em = getEntityManager();
-			Query query = em.createQuery("SELECT  c FROM Curso c WHERE upper(c.nome) LIKE upper(:nome)");
-			query.setParameter("nome", "%" + nome + "%");
-			resultList = query.getResultList();
-
-		} catch (Exception e) {
-			new RepositoryException("Problema ao pesquisar usuários");
-			e.printStackTrace();
-		}
-
-		return resultList;
-	}
-
-	public Aluno login(String login, String password) {
-		Aluno aluno = null;
-		try {
-			EntityManager em = getEntityManager();
-			Query query = em
-					.createQuery("SELECT al FROM Aluno as al where al.login = :login and al.senha = :password");
+			Query query = em.createQuery("SELECT p FROM Pessoa p where p.login = :login and p.senha = :senha");
 			query.setParameter("login", login);
-			query.setParameter("password", password);
-			aluno = (Aluno) query.getResultList().get(0);
+			query.setParameter("senha", senha);
+
+			pessoa = (Pessoa) query.getResultList().get(0);
+
 		} catch (Exception e) {
-			new RepositoryException("Login ou senha incorretos");
 			e.printStackTrace();
+
 		}
-		return aluno;
-
+		System.out.println(pessoa);
+		return pessoa;
 	}
-
 }

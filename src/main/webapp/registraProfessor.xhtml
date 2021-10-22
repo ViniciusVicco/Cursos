@@ -44,6 +44,15 @@
 							</div>
 
 							<div>
+
+								<p:outputLabel value="cpf" />
+								<p:inputText required="true"
+									requiredMessage="cpf não pode ser vazio"
+									value="#{registraProfessorController.professor.cpf}" />
+
+							</div>
+
+							<div>
 								<p:outputLabel value="e-mail:" />
 								<p:inputText required="true"
 									requiredMessage="Email não pode ser vazio"
@@ -73,8 +82,9 @@
 									requiredMessage="Selecione ao menos um gênero biologico"
 									value="#{registraProfessorController.professor.genero}">
 									<f:selectItem itemLabel="Selecione..." />
-									<f:selectItems value="#{registraProfessorController.listaGenero}"
-										var="obj" itemLabel="#{obj.label}" />
+									<f:selectItems
+										value="#{registraProfessorController.listaGenero}" var="obj"
+										itemLabel="#{obj.label}" />
 								</p:selectOneMenu>
 
 							</div>

@@ -18,31 +18,28 @@ public class RegistraProfessorController extends Controller<Professor> implement
 
 	private Professor professor = new Professor();
 	private String confirmaSenha;
-	
+
 	public Genero[] getlistaGenero() {
 		return Genero.values();
 	}
 
 	public Professor getProfessor() {
-		if(professor == null)
+		if (professor == null)
 			professor = new Professor();
 		return professor;
 	}
-	
+
 	public void registra() {
-		Professor prof = new Professor();
-		prof = getProfessor();
-		prof.setStatus(true);
-		prof.setSenha(Util.hash(prof.getLogin() + prof.getSenha()));
-		setProfessor(prof);
+		String senha = Util.hash(getProfessor().getLogin() + getProfessor().getSenha());
+		getProfessor().setSenha(senha);
+		System.out.println("Professor:" + getProfessor());
 		salvar();
 		limpar();
 	}
 
-
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
-	}	
+	}
 
 	@Override
 	public Professor getEntity() {
@@ -59,5 +56,5 @@ public class RegistraProfessorController extends Controller<Professor> implement
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
 	}
-	
+
 }

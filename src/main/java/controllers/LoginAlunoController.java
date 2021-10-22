@@ -12,7 +12,7 @@ import Application.JPAUtil;
 import Application.Session;
 import Application.Util;
 import models.Aluno;
-
+import models.Pessoa;
 import repository.PessoaRepository;
 
 @Named
@@ -35,18 +35,18 @@ public class LoginAlunoController extends Controller<Aluno> implements Serializa
 	}
 
 	public void efetuaLogin() {
-		Aluno al = null;
+		Pessoa pe = null;
 		PessoaRepository repo = new PessoaRepository();
 		if (login != null && password != null) {
 			String hashPassword = Util.hash(getLogin() + getPassword());
 
-			al = repo.login(login, hashPassword);
-			setAluno(al);
+//			pe = repo.login(login, hashPassword);
+		//	setAluno(pe);
 		}
-		if (al != null) {
-			if (al.isStatus()) {
+		if (pe != null) {
+			if (pe.isStatus()) {
 				Util.addInfoMessage("Login efetuado com sucesso");
-				Session.getInstance().set("user", al);
+				Session.getInstance().set("user", pe);
 				System.out.println(Session.getInstance().get("user"));
 				Util.redirect("cadastraCurso.xhtml");
 			} else {

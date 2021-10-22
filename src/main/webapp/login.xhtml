@@ -23,11 +23,11 @@
 						<p:outputLabel value="login:" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText value="#{loginAlunoController.login}" />
+								<p:inputText value="#{loginController.login}" />
 							</div>
 						</h:panelGroup>
 						<p:outputLabel value="Senha" />
-						<p:inputText value="#{loginAlunoController.password}" />
+						<p:inputText value="#{loginController.senha}" />
 
 
 					</h:panelGrid>
@@ -36,12 +36,12 @@
 					<f:facet name="footer">
 						<h:panelGrid columns="3">
 							<p:commandButton value="Efetuar login"
-								actionListener="#{loginAlunoController.efetuaLogin}"
-								process="@all" update="@all" />
+								actionListener="#{loginController.fazLogin}" process="@all"
+								update="@all" />
 
 
 							<p:commandButton value="Cadastrar-se"
-								actionListener="#{loginAlunoController.redirecionaRegistro}"
+								actionListener="#{loginAlunoController.redirecionaRegistro()}"
 								process="@all" update="@all" />
 
 
