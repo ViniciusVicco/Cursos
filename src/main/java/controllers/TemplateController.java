@@ -57,7 +57,7 @@ public class TemplateController implements Serializable {
 	}
 
 	public void redirecionaLogin() {
-		Util.redirect("loginRedireciona.xhtml");
+		Util.redirect("login.xhtml");
 	}
 
 	public void redirecionaPix() {
@@ -74,7 +74,7 @@ public class TemplateController implements Serializable {
 
 	public void sair() {
 		Session.getInstance().set("user", null);
-		Util.redirect("listaCursos.xhtml");
+		Util.redirect("login.xhtml");
 	}
 
 }

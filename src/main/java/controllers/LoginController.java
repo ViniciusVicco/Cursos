@@ -31,16 +31,22 @@ public class LoginController extends Controller<Pessoa> implements Serializable 
 
 	public void fazLogin() {
 		PessoaRepository repository = new PessoaRepository();
-		if(login == null) return;
+		if (login == null)
+			return;
 		pessoa = repository.buscaPessoa(login, Util.hash(login + senha));
-
-		if(pessoa != null) {
+		System.out.println(pessoa);
+		if (pessoa != null) {
 			Session.getInstance().set("user", pessoa);
+			login = null;
+			senha = null;
+			Util.redirect("listaCursos.xhtml");
+		} else {
+			Util.addErrorMessage("Não foi possível efetuar login");
 		}
 
 	}
 
-	public  String getLogin() {
+	public String getLogin() {
 		return login;
 	}
 
