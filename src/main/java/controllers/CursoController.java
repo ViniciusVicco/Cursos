@@ -14,9 +14,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import Application.JPAUtil;
-import Application.RepositoryException;
-import Application.Util;
+import application.JPAUtil;
+import application.RepositoryException;
+import application.Util;
 import models.Curso;
 import repository.PessoaRepository;
 

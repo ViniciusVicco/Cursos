@@ -7,8 +7,8 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import Application.Session;
-import Application.Util;
+import application.Session;
+import application.Util;
 import models.Pessoa;
 import repository.PessoaRepository;
 import repository.Repository;
@@ -44,6 +44,10 @@ public class LoginController extends Controller<Pessoa> implements Serializable 
 			Util.addErrorMessage("Não foi possível efetuar login");
 		}
 
+	}
+
+	public void redirecionaCadastro() {
+		Util.redirect("registroRedireciona.xhtml");
 	}
 
 	public String getLogin() {

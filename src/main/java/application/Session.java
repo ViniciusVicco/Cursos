@@ -1,4 +1,4 @@
-package Application;
+package application;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;

@@ -5,8 +5,8 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import Application.Session;
-import Application.Util;
+import application.Session;
+import application.Util;
 import models.Administrador;
 import models.Aluno;
 import models.Pessoa;
@@ -28,6 +28,10 @@ public class TemplateController implements Serializable {
 		} else {
 			return true;
 		}
+	}
+
+	public void redirecionaPerfil() {
+		Util.redirect("perfil.xhtml");
 	}
 
 	public boolean checaAluno() {

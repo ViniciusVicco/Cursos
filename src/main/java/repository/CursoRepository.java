@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import Application.RepositoryException;
+import application.RepositoryException;
 import models.Curso;
 
 public class CursoRepository extends Repository<Curso> {

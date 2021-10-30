@@ -3,10 +3,11 @@ package repository;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.Query;
-import javax.persistence.EntityManager;
 
-import Application.JPAUtil;
-import Application.RepositoryException;
+import application.JPAUtil;
+import application.RepositoryException;
+
+import javax.persistence.EntityManager;
 
 public class Repository<T> {
 	

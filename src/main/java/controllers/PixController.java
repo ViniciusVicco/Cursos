@@ -6,7 +6,7 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import Application.RepositoryException;
+import application.RepositoryException;
 import models.FormaPagamento;
 import models.Pix;
 import repository.FormaPagamentoRepository;

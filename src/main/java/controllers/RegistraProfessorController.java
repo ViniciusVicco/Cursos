@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import Application.Util;
+import application.Util;
 import models.Aluno;
 import models.Professor;
 import modelsEnum.Genero;
