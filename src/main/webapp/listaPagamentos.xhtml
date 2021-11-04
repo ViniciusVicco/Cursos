@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="redirectForm">
+			<div
+				style="padding-top: 10px; padding-left: 5px; padding-right: 5px; padding-bottom: 3px; width: 30%">
+				<h:body>
+
+					<p:dataTable id="table" var="obj" value="#{pixController.listaPix}">
+						<p:column headerText="Chave">
+							<h:outputText value="#{obj.chave}"></h:outputText>
+						</p:column>
+
+						<p:column headerText="Tipo">
+							<h:outputText value="#{obj.tipoPix.label}"></h:outputText>
+						</p:column>
+
+
+
+						<p:column headerText="">
+
+
+						</p:column>
+
+
+
+					</p:dataTable>
+
+				</h:body>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

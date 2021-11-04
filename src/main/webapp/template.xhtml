@@ -36,13 +36,7 @@
 				style="text-decoration: none;margin-top:10px">
 				<f:ajax execute="@this" render="@this"></f:ajax>
 			</h:commandLink>
-			<h:commandLink value="Cadastrar um cartão"
-				actionListener="#{templateController.redirecionaCartao}"
-				rendered="#{templateController.checaAluno()}"
-				class="navbar-section btn btn-link"
-				style="text-decoration: none;margin-top:10px">
-				<f:ajax execute="@this" render="@this"></f:ajax>
-			</h:commandLink>
+
 			<h:commandLink value="Cadastrar Curso"
 				actionListener="#{templateController.redirecionaCurso}"
 				rendered="#{templateController.checaAluno()}"
@@ -50,14 +44,10 @@
 				style="text-decoration: none;margin-top:10px">
 				<f:ajax execute="@this" render="@this"></f:ajax>
 			</h:commandLink>
-			<h:commandLink value="Cadastrar chave pix"
-				actionListener="#{templateController.redirecionaPix}"
+
+			<h:commandLink value="Perfil"
 				rendered="#{templateController.checaAluno()}"
-				class="navbar-section btn btn-link"
-				style="text-decoration: none;margin-top:10px">
-				<f:ajax execute="@this" render="@this"></f:ajax>
-			</h:commandLink>
-			<h:commandLink value="Meu histórico de compras" rendered="false"
+				actionListener="#{templateController.redirecionaPerfil()}"
 				class="navbar-section btn btn-link"
 				style="text-decoration: none;margin-top:10px">
 				<f:ajax execute="@this" render="@this"></f:ajax>

@@ -42,6 +42,14 @@ public class RegistraProfessorController extends Controller<Professor> implement
 	}
 
 	@Override
+	public void salvar() {
+		// TODO Auto-generated method stub
+		super.salvar();
+		setProfessor(null);
+		confirmaSenha = null;
+	}
+
+	@Override
 	public Professor getEntity() {
 		if (entity == null) {
 			entity = new Professor();

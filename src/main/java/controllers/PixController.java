@@ -58,9 +58,10 @@ public class PixController extends Controller<Pix> implements Serializable {
 	}
 
 	public List<FormaPagamento> getListaPix() {
-		if(listaPix == null) {
+		if (listaPix == null) {
 			listaPix = getListaCartao();
 		}
+		System.out.print(listaPix.get(0));
 		return listaPix;
 	}
 

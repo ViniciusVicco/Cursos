@@ -26,71 +26,82 @@
 }
 </style>
 
-					<h:panelGrid columns="2" style="width:100%;"
-						columnClasses="one, two">
-						<h:panelGroup layout="block">
-							<p:fieldset legend="Cadastre-se como professor" id="custFieldset"
-								style="text-align: center;">
-							</p:fieldset>
-
-
-							<div>
-
-								<p:outputLabel value="nome:" />
-								<p:inputText required="true"
-									requiredMessage="Nome não pode ser vazio"
-									value="#{registraProfessorController.professor.nome}" />
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Nome * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{registraProfessorController.professor.nome}"
+									required="true"
+									requiredMessage="Nome do curso é um campo obrigatório" />
+								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
 
 							</div>
+						</h:panelGroup>
+						<p:outputLabel value="CPF * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
 
-							<div>
-
-								<p:outputLabel value="cpf" />
-								<p:inputText required="true"
-									requiredMessage="cpf não pode ser vazio"
+								<p:inputText style="width:250px"
 									value="#{registraProfessorController.professor.cpf}" />
-
 							</div>
+						</h:panelGroup>
 
-							<div>
-								<p:outputLabel value="e-mail:" />
-								<p:inputText required="true"
-									requiredMessage="Email não pode ser vazio"
+						<p:outputLabel value="E-mail * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+
+								<p:inputText style="width:250px"
 									value="#{registraProfessorController.professor.email}" />
 							</div>
+						</h:panelGroup>
 
-							<div>
-								<p:outputLabel value="login:" />
-								<p:inputText required="true"
-									requiredMessage="Login não pode ser vazio"
+						<p:outputLabel value="Login * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
 									value="#{registraProfessorController.professor.login}" />
-							</div>
-							<div>
-								<p:outputLabel value="senha:" />
-								<p:inputText required="true"
-									requiredMessage="Senha não pode ser vazia"
-									value="#{registraProfessorController.professor.senha}" />
-							</div>
-							<div>
-								<p:outputLabel value="senha:" />
-								<p:inputText required="true"
-									requiredMessage="Senha não pode ser vazia"
-									value="#{registraProfessorController.confirmaSenha}" />
-							</div>
-							<div>
-								<p:selectOneMenu required="true"
-									requiredMessage="Selecione ao menos um gênero biologico"
-									value="#{registraProfessorController.professor.genero}">
-									<f:selectItem itemLabel="Selecione..." />
-									<f:selectItems
-										value="#{registraProfessorController.listaGenero}" var="obj"
-										itemLabel="#{obj.label}" />
-								</p:selectOneMenu>
 
 							</div>
 						</h:panelGroup>
 
+						<p:outputLabel value="Senha *" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{registraProfessorController.professor.senha}" />
+
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Confirma Senha *" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{registraProfessorController.confirmaSenha}" />
+
+							</div>
+						</h:panelGroup>
+						<div>
+
+							<p:selectOneMenu required="true"
+								requiredMessage="Selecione ao menos um gênero biologico"
+								value="#{registraProfessorController.professor.genero}">
+								<f:selectItem itemLabel="Gênero" />
+								<f:selectItems
+									value="#{registraProfessorController.listaGenero}" var="obj"
+									itemLabel="#{obj.label}" />
+							</p:selectOneMenu>
+
+						</div>
+
+
 					</h:panelGrid>
+
+
+
+
 
 					<f:facet name="footer">
 						<h:panelGrid columns="3">

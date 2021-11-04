@@ -15,6 +15,10 @@ import javax.persistence.InheritanceType;
 @DiscriminatorValue("F")
 public class FormaPagamento  {
 	
+	@Override
+	public String toString() {
+		return "FormaPagamento [id=" + id + ", ativo=" + ativo + ", desconto=" + desconto + ", tipo=" + tipo + "]";
+	}
 	@Id
 	@GeneratedValue
 	private int id;
