@@ -16,8 +16,10 @@ import javax.persistence.TypedQuery;
 
 import application.JPAUtil;
 import application.RepositoryException;
+import application.Session;
 import application.Util;
 import models.Curso;
+import models.Professor;
 import repository.PessoaRepository;
 
 @Named
@@ -80,13 +82,18 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		List<Curso> results = query.getResultList();
 		return results;
 	}
-	
+
 	@Override
 	public void salvar() {
 		// TODO Auto-generated method stub
 		LocalDate localDate = LocalDate.now();
+//		System.out.println("CURSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO " + getCurso().getImagem());
+		Professor professor = (Professor) Session.getInstance().get("user");
+		if(professor != null) {
+			curso.setProfessor(professor);
+		}
 		curso.setDatacriacao(localDate);
-		super.salvar();
+		 super.salvar();
 	}
 
 	@Override

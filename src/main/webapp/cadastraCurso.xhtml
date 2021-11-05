@@ -18,7 +18,7 @@
 
 				<p:panel>
 					<f:facet name="header">
-						<h2>Cadastrar cartões</h2>
+						<h2>Cadastrar Curso</h2>
 					</f:facet>
 
 					<h:panelGrid columns="2">
@@ -57,6 +57,15 @@
 							<div class="ui-inputgroup">
 								<p:inputText style="width:250px"
 									value="#{cursoController.curso.valor}" />
+
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Imagem de Capa *" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:fileUpload value="#{cursoController.curso.imagem}"
+									mode="simple" skinSimple="true" label="Fazer Upload"></p:fileUpload>
 
 							</div>
 						</h:panelGroup>

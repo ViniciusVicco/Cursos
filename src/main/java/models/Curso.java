@@ -7,23 +7,54 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 public class Curso {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Integer id;
 	@Column(nullable = false)
 	private int valor;
 	@Column(nullable = false)
 	private String nome;
+	@ManyToOne
+	@JoinColumn(name = "professor")
+	private Professor professor;
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
+	@NotNull
+	@Lob
+	private byte[] imagem;
+
 	@Column(nullable = false)
 	private String descricao;
 	@Transient
 	private String nomeDescricao;
 	private int horas;
 	private LocalDate datacriacao;
-	
+
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -56,7 +87,6 @@ public class Curso {
 		this.nome = nome;
 	}
 
-
 	public int getHoras() {
 		return horas;
 	}
@@ -64,8 +94,6 @@ public class Curso {
 	public void setHoras(int horas) {
 		this.horas = horas;
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -89,6 +117,5 @@ public class Curso {
 	public void setDatacriacao(LocalDate datacriacao) {
 		this.datacriacao = datacriacao;
 	}
-
 
 }

@@ -69,7 +69,7 @@
 						<p:outputLabel value="Senha *" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText style="width:250px"
+								<p:inputText type="password" style="width:250px"
 									value="#{registraProfessorController.professor.senha}" />
 
 							</div>
@@ -78,7 +78,7 @@
 						<p:outputLabel value="Confirma Senha *" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText style="width:250px"
+								<p:inputText type="password" style="width:250px"
 									value="#{registraProfessorController.confirmaSenha}" />
 
 							</div>
@@ -112,7 +112,7 @@
 
 							<p:commandButton value="Limpar"
 								actionListener="#{registraAlunoController.limpar}"
-								process="registroDeProf" update="registroDeProf" />
+								process="@this" update="registroDeProf" />
 
 
 
