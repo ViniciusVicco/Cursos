@@ -27,6 +27,9 @@ public class Curso {
 	@ManyToOne
 	@JoinColumn(name = "professor")
 	private Professor professor;
+	@ManyToOne
+	@JoinColumn(name = "categoria")
+	private Categoria categoria;
 
 	public Professor getProfessor() {
 		return professor;

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:body>
+			<h:form id="botao">
+				<p:messages id="messages" showDetail="true" closable="true">
+
+				</p:messages>
+
+
+
+
+
+
+
+
+
+				<p:commandButton value="Show" type="button"
+					icon="pi pi-external-link" onclick="PF('dlg3').show()" />
+
+
+
+
+			</h:form>
+
+			<p:dialog header="Header" widgetVar="dlg3" minHeight="40" width="500"
+				showEffect="fade">
+				<h:form id="crudCategorias">
+					<p:panel>
+						<f:facet name="header">
+							<h2>Cadastrar Curso</h2>
+						</f:facet>
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Nome da Categoria * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{categoriaController.categoria.nome}" required="true"
+										requiredMessage="Nome do curso é um campo obrigatório" />
+									<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
+
+								</div>
+							</h:panelGroup>
+							<p:outputLabel value="Descrição * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+
+									<p:inputText style="width:250px"
+										value="#{categoriaController.categoria.descricao}" />
+								</div>
+							</h:panelGroup>
+
+
+
+
+						</h:panelGrid>
+						<f:facet name="footer">
+							<h:panelGrid columns="3">
+								<p:commandButton value="Salvar"
+									actionListener="#{categoriaController.salvar}"
+									process="crudCategorias" update="crudCategorias" />
+
+
+								<p:commandButton value="Limpar"
+									actionListener="#{categoriaController.limpar}" process="@this"
+									update="@form" />
+
+
+
+								<p:commandButton value="Remover"
+									actionListener="#{cursoController.excluir}" process="@this"
+									update="crudCategorias" styleClass="ui-button-danger" />
+
+
+
+
+							</h:panelGrid>
+						</f:facet>
+
+					</p:panel>
+				</h:form>
+			</p:dialog>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

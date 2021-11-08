@@ -7,37 +7,43 @@
 <ui:composition template="/template.xhtml">
 	<ui:define name="conteudo">
 		<h:body>
-			<div class="container" style="margin-top: 10%; margin-bottom: 10%">
-				<!-- Example row of columns -->
-				<div class="row">
-					<div class="col-md-4">
-						<h2>Formas de pagamento</h2>
-						<p>Cadastre um cartão de crédito ou sua chave pix e faça o
-							pagamento do seu jeito!</p>
-						<p>
-							<a class="btn btn-secondary" href="#" role="button">Ver
-								Minhas formas de pagamento »</a>
-						</p>
-					</div>
-					<div class="col-md-4">
-						<h2>Histórico de compras</h2>
-						<p>Confira aqui seu histórico de compras, estornos e
-							transações junto com os melhores cursos que você só acha aqui</p>
-						<p>
-							<a class="btn btn-secondary" href="#" role="button">Ver Histórico »</a>
-						</p>
-					</div>
-					<div class="col-md-4">
-						<h2>Dados Pessoais</h2>
-						<p>Revise seus dados e mantenha sempre o seu telefone
-							atualizado para melhor segurança</p>
-						<p>
-							<a class="btn btn-secondary" href="#" role="button">Dados pessoais »</a>
-						</p>
-					</div>
-				</div>
+			<h:form>
+				<div class="container" style="margin-top: 10%; margin-bottom: 10%">
+					<!-- Example row of columns -->
+					<div class="row">
+						<div class="col-md-4">
+							<h2>Formas de pagamento</h2>
+							<p>Cadastre um cartão de crédito ou sua chave pix e faça o
+								pagamento do seu jeito!</p>
 
-			</div>
+							<h:commandLink
+								actionListener="#{perfilController.redirecionaFormasDePagamento()}"
+								class="btn btn-secondary" role="button">Ver
+								Minhas formas de pagamento »</h:commandLink>
+
+						</div>
+						<div class="col-md-4">
+							<h2>Histórico de compras</h2>
+							<p>Confira aqui seu histórico de compras, estornos e
+								transações junto com os melhores cursos que você só acha aqui</p>
+							<p>
+								<a class="btn btn-secondary" href="#" role="button">Ver
+									Histórico »</a>
+							</p>
+						</div>
+						<div class="col-md-4">
+							<h2>Dados Pessoais</h2>
+							<p>Revise seus dados e mantenha sempre o seu telefone
+								atualizado para melhor segurança</p>
+							<p>
+								<a class="btn btn-secondary" href="#" role="button">Dados
+									pessoais »</a>
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</h:form>
 		</h:body>
 	</ui:define>
 </ui:composition>
