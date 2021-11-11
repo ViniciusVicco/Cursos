@@ -21,6 +21,8 @@ public class Categoria {
 	@NotNull
 	private String nome;
 	@Column
+	private boolean isRemovido;
+	@Column
 	@NotNull
 	private String descricao;
 	@OneToMany(mappedBy = "categoria")
@@ -57,5 +59,12 @@ public class Categoria {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public boolean isRemovido() {
+		return isRemovido;
+	}
+
+	public void setRemovido(boolean isRemovido) {
+		this.isRemovido = isRemovido;
 	}
 }
