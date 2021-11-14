@@ -18,8 +18,10 @@ import application.JPAUtil;
 import application.RepositoryException;
 import application.Session;
 import application.Util;
+import models.Categoria;
 import models.Curso;
 import models.Professor;
+import repository.CategoriaRepository;
 import repository.PessoaRepository;
 
 @Named
@@ -38,6 +40,20 @@ public class CursoController extends Controller<Curso> implements Serializable {
 			curso = new Curso();
 		}
 		return curso;
+	}
+	
+	public List<Categoria> completeCategorias(String query){
+		if(query == null) {
+			 return new ArrayList<Categoria>();
+		}
+		CategoriaRepository repo = new CategoriaRepository();
+		 try {
+			return repo.findByNome(query,null);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return new ArrayList<Categoria>();
 	}
 
 	public void setCurso(Curso curso) {
@@ -87,7 +103,6 @@ public class CursoController extends Controller<Curso> implements Serializable {
 	public void salvar() {
 		// TODO Auto-generated method stub
 		LocalDate localDate = LocalDate.now();
-//		System.out.println("CURSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO " + getCurso().getImagem());
 		Professor professor = (Professor) Session.getInstance().get("user");
 		if(professor != null) {
 			curso.setProfessor(professor);

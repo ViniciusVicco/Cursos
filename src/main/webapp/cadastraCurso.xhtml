@@ -61,15 +61,18 @@
 							</div>
 						</h:panelGroup>
 
-						<p:outputLabel value="Imagem de Capa *" />
+						<p:outputLabel value="Escolha uma categoria" />
 						<h:panelGroup>
-							<div class="ui-inputgroup">
-								<p:fileUpload value="#{cursoController.curso.imagem}"
-									mode="simple" skinSimple="true" label="Fazer Upload"></p:fileUpload>
-
-							</div>
+							<p:autoComplete id="acDelay" queryDelay="1000"
+								value="#{cursoController.curso.categoria}" var="obj"
+								itemLabel="#{obj.nome}" itemValue="#{obj}"
+								completeMethod="#{cursoController.completeCategorias}"
+								effect="blind" scrollHeight="250" />
 						</h:panelGroup>
 					</h:panelGrid>
+
+					<p:commandButton value="Criar Uma nova categoria" type="button"
+						icon="pi pi-external-link" onclick="PF('dlg3').show()" />
 
 					<f:facet name="footer">
 						<h:panelGrid columns="3">
@@ -136,6 +139,66 @@
 						styleClass="ui-button-flat p-mr-2" style="width: 6rem" />
 					<p:commandButton type="button" value="Yes" style="width: 5rem" />
 				</f:facet>
+			</p:dialog>
+
+			<p:dialog header="Cadastrar Categoria" widgetVar="dlg3"
+				minHeight="40" width="500" showEffect="fade">
+				<h:form id="crudCategorias">
+					<p:panel>
+						<f:facet name="header">
+							<h2>Cadastre uma nova categoria</h2>
+						</f:facet>
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Nome da Categoria * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{categoriaController.categoria.nome}" required="true"
+										requiredMessage="Nome do curso é um campo obrigatório" />
+									<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
+
+								</div>
+							</h:panelGroup>
+							<p:outputLabel value="Descrição * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+
+									<p:inputText style="width:250px"
+										value="#{categoriaController.categoria.descricao}" />
+								</div>
+							</h:panelGroup>
+
+
+
+
+						</h:panelGrid>
+						<f:facet name="footer">
+							<h:panelGrid columns="3">
+								<p:commandButton value="Salvar"
+									actionListener="#{categoriaController.salvar}"
+									process="crudCategorias" update="crudCategorias" />
+
+
+								<p:commandButton value="Limpar"
+									actionListener="#{categoriaController.limpar}" process="@this"
+									update="@form" />
+
+
+
+								<p:commandButton value="Remover"
+									actionListener="#{cursoController.excluir}" process="@this"
+									update="crudCategorias" styleClass="ui-button-danger" />
+
+
+
+
+							</h:panelGrid>
+						</f:facet>
+
+					</p:panel>
+				</h:form>
 			</p:dialog>
 		</h:body>
 	</ui:define>
