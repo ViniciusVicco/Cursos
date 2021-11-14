@@ -14,7 +14,8 @@ public class CategoriaRepository extends Repository<Categoria> {
 		try {
 			EntityManager em = getEntityManager();
 			// JPQL ou SQL
-			Query query = em.createQuery("SELECT  c FROM Categoria c WHERE upper(c.nome) LIKE upper(:nome) AND isremovido = false ");
+			Query query = em.createQuery(
+					"SELECT  c FROM Categoria c WHERE upper(c.nome) LIKE upper(:nome) AND isremovido = false ORDER BY c.nome");
 			query.setParameter("nome", "%" + nome + "%");
 			if (maxResults != null)
 				query.setMaxResults(maxResults);
