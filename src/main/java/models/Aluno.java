@@ -9,10 +9,10 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue(value = "A")
 public class Aluno extends Pessoa {
-	
+
 	public List<String> permissoes() {
 		ArrayList<String> paginasComPermissao = new ArrayList<String>();
-		paginasComPermissao.add("/Cursos/listaCursos.xhtml");
+		paginasComPermissao.add("/Cursos/pages/listaCursos.xhtml");
 		return null;
 	}
 
