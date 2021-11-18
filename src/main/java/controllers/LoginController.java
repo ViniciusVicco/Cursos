@@ -33,7 +33,7 @@ public class LoginController extends Controller<Pessoa> implements Serializable 
 		PessoaRepository repository = new PessoaRepository();
 		if (login == null)
 			return;
-		pessoa = repository.buscaPessoa(login, Util.hash(login + senha));
+		pessoa = repository.efetuaLogin(login, Util.hash(login + senha));
 		System.out.println(pessoa);
 		if (pessoa != null) {
 			Session.getInstance().set("user", pessoa);

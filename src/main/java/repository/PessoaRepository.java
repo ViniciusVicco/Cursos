@@ -34,7 +34,7 @@ public class PessoaRepository extends Repository<Pessoa> {
 //
 //	}
 
-	public Pessoa buscaPessoa(String login, String senha) {
+	public Pessoa efetuaLogin(String login, String senha) {
 
 		try {
 			EntityManager em = getEntityManager();
