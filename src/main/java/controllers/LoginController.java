@@ -20,7 +20,7 @@ public class LoginController extends Controller<Pessoa> implements Serializable 
 	private static final long serialVersionUID = 8433058250165055965L;
 
 	private Pessoa pessoa = null;
-	private String login;
+	private String email;
 	private String senha;
 
 	@Override
@@ -31,13 +31,13 @@ public class LoginController extends Controller<Pessoa> implements Serializable 
 
 	public void fazLogin() {
 		PessoaRepository repository = new PessoaRepository();
-		if (login == null)
+		if (email == null)
 			return;
-		pessoa = repository.efetuaLogin(login, Util.hash(login + senha));
+		pessoa = repository.efetuaLogin(email, Util.hash(email + senha));
 		System.out.println(pessoa);
 		if (pessoa != null) {
 			Session.getInstance().set("user", pessoa);
-			login = null;
+			email = null;
 			senha = null;
 			Util.redirect("listaCursos.xhtml");
 		} else {
@@ -46,17 +46,18 @@ public class LoginController extends Controller<Pessoa> implements Serializable 
 
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public void redirecionaCadastro() {
 		Util.redirect("registroRedireciona.xhtml");
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
 
 	public String getSenha() {
 		return senha;

@@ -26,62 +26,7 @@
 }
 </style>
 
-					<!--  	<h:panelGrid columns="2" style="width:100%;"
-						columnClasses="one, two">
-						<h:panelGroup layout="block">
-							<p:fieldset legend="Cadastre-se como aluno" id="custFieldset"
-								style="text-align: center;">
-							</p:fieldset>
 
-
-							<div>
-
-								<p:outputLabel value="nome:" />
-								<p:inputText required="true"
-									requiredMessage="Nome não pode ser vazio"
-									value="#{registraAlunoController.aluno.nome}" />
-
-							</div>
-
-							<div>
-								<p:outputLabel value="e-mail:" />
-								<p:inputText required="true"
-									requiredMessage="Email não pode ser vazio"
-									value="#{registraAlunoController.aluno.email}" />
-							</div>
-
-							<div>
-								<p:outputLabel value="login:" />
-								<p:inputText required="true"
-									requiredMessage="Login não pode ser vazio"
-									value="#{registraAlunoController.aluno.login}" />
-							</div>
-							<div>
-								<p:outputLabel value="senha:" />
-								<p:inputText required="true"
-									requiredMessage="Senha não pode ser vazia"
-									value="#{registraAlunoController.aluno.senha}" />
-							</div>
-							<div>
-								<p:outputLabel value="senha:" />
-								<p:inputText required="true"
-									requiredMessage="Senha não pode ser vazia"
-									value="#{registraAlunoController.confirmaSenha}" />
-							</div>
-							<div>
-								<p:selectOneMenu required="true"
-									requiredMessage="Selecione ao menos um gênero biologico"
-									value="#{registraAlunoController.aluno.genero}">
-									<f:selectItem itemLabel="Selecione..." />
-									<f:selectItems value="#{registraAlunoController.listaTipoPeso}"
-										var="obj" itemLabel="#{obj.label}" />
-								</p:selectOneMenu>
-
-							</div>
-						</h:panelGroup>
-
-					</h:panelGrid>
-					-->
 
 					<h:panelGrid columns="2">
 						<p:outputLabel value="nome" />
@@ -97,13 +42,6 @@
 						<h:panelGroup>
 							<div class="ui-inputgroup">
 								<p:inputText value="#{registraAlunoController.aluno.cpf}" />
-							</div>
-						</h:panelGroup>
-
-						<p:outputLabel value="login:" />
-						<h:panelGroup>
-							<div class="ui-inputgroup">
-								<p:inputText value="#{registraAlunoController.aluno.login}" />
 							</div>
 						</h:panelGroup>
 

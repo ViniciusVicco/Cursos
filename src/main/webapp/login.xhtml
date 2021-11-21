@@ -5,52 +5,56 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:body>
+			<h:form id="loginForm">
 
-<h:body>
-	<h:form id="loginForm">
+				<p:messages id="messages" showDetail="false" closable="true">
 
-		<p:messages id="messages" showDetail="false" closable="true">
+				</p:messages>
 
-		</p:messages>
-
-		<p:panel>
-			<f:facet name="header">
-				<h2>Fazer login</h2>
-			</f:facet>
-
-
-			<h:panelGrid columns="2">
-				<p:outputLabel value="login:" />
-				<h:panelGroup>
-					<div class="ui-inputgroup">
-						<p:inputText value="#{loginController.login}" />
-					</div>
-				</h:panelGroup>
-				<p:outputLabel value="Senha" />
-				<p:inputText value="#{loginController.senha}" />
+				<p:panel>
+					<f:facet name="header">
+						<h2>Fazer login</h2>
+					</f:facet>
 
 
-			</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:outputLabel value="E-mail" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText value="#{loginController.email}" />
+							</div>
+						</h:panelGroup>
+						<p:outputLabel value="Senha" />
+						<p:inputText value="#{loginController.senha}" />
+
+						<h:commandLink action="esqueceusenha.xhtml?faces-redirect=true"
+							style="font-size:15px" value="Esqueci minha senha"></h:commandLink>
+
+					</h:panelGrid>
 
 
-			<f:facet name="footer">
-				<h:panelGrid columns="3">
-					<p:commandButton value="Efetuar login"
-						actionListener="#{loginController.fazLogin}" process="@all"
-						update="@all" />
+					<f:facet name="footer">
+						<h:panelGrid columns="3">
+							<p:commandButton value="Efetuar login"
+								actionListener="#{loginController.fazLogin}" process="@all"
+								update="@all" />
 
 
-					<p:commandButton value="Cadastrar-se"
-						actionListener="#{loginController.redirecionaCadastro()}"
-						process="@all" update="@all" />
+							<p:commandButton value="Cadastrar-se"
+								actionListener="#{loginController.redirecionaCadastro()}"
+								process="@all" update="@all" />
 
 
 
 
-				</h:panelGrid>
-			</f:facet>
-		</p:panel>
-	</h:form>
-</h:body>
-
+						</h:panelGrid>
+					</f:facet>
+				</p:panel>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
 </html>

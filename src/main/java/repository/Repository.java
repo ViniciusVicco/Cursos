@@ -1,6 +1,7 @@
 package repository;
 
 import java.lang.reflect.ParameterizedType;
+import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -8,6 +9,7 @@ import application.JPAUtil;
 import application.RepositoryException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.OneToMany;
 
 public class Repository<T> {
 	
@@ -28,6 +30,21 @@ private EntityManager em = null;
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao Salvar");
 		}
+		
+	}
+	
+	
+	public T register(T entity) throws SQLException {
+		try {
+			getEntityManager().getTransaction().begin();
+			T e = getEntityManager().merge(entity);
+			getEntityManager().getTransaction().commit();
+			return e;
+		} catch(Exception e ) {
+			throw e;
+		}
+
+		
 	}
 	
 	public void remove(T entity) throws RepositoryException {

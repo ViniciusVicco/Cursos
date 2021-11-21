@@ -11,10 +11,12 @@
 		<class>models.Categoria</class>
 		<class>models.Compra</class>
 		<class>models.Curso</class>
+		<class>models.DefaultEntity</class>
 		<class>models.FormaPagamento</class>
 		<class>models.Pessoa</class>
 		<class>models.Pix</class>
 		<class>models.Professor</class>
+		<class>models.RecuperaSenha</class>
 
 		<properties>
 			<!-- DB Driver -->
@@ -40,5 +42,5 @@
 			<property name="hibernate.format_sql" value="true" />
 		</properties>
 
-	</persistence-unit>
+</persistence-unit>
 </persistence>

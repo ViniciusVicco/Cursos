@@ -30,10 +30,10 @@ public class RegistraProfessorController extends Controller<Professor> implement
 	}
 
 	public void registra() {
-		String senha = Util.hash(getProfessor().getLogin() + getProfessor().getSenha());
+		String senha = Util.hash(getProfessor().getEmail() + getProfessor().getSenha());
 		getProfessor().setSenha(senha);
 		System.out.println("Professor:" + getProfessor());
-		salvar();
+		registrar();
 		limpar();
 	}
 

@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:head>
+			<link rel="stylesheet" type="text/css" href="css/primeflex.css" />
+		</h:head>
+
+		<h:body>
+			<h:form id="esqueceusenha">
+
+				<p:messages id="messages" showDetail="false" closable="true">
+
+				</p:messages>
+				<p:panel>
+					<f:facet name="header">
+						<h2>Esqueci minha senha</h2>
+					</f:facet>
+
+					<h:panelGrid columns="2">
+						<p:outputLabel value="E-mail * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{esqueceuSenhaController.email}" required="true"
+									requiredMessage="E-mail obrigatório" />
+
+
+							</div>
+						</h:panelGroup>
+
+
+
+					</h:panelGrid>
+					<div style="padding-top: 50px">
+						<p:commandButton value="Enviar recuperação"
+							actionListener="#{esqueceuSenhaController.enviar()}"
+							process="esqueceusenha" update="esqueceusenha"></p:commandButton>
+					</div>
+				</p:panel>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

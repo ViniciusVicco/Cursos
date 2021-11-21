@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 
 import modelsEnum.Genero;
@@ -35,10 +36,8 @@ public class Pessoa {
 	private String cpf;
 	@Column(nullable = false)
 	private String nome;
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
-	@Column(nullable = false)
-	private String login;
 	@Column(nullable = false)
 	private String senha;
 	private boolean status;
@@ -79,14 +78,6 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
 	public String getSenha() {
 		return senha;
 	}
@@ -113,10 +104,8 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", login=" + login
-				+ ", senha=" + senha + ", status=" + status + ", genero=" + genero + ", tipo=" + tipo + "]";
+		return "Pessoa [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", senha=" + senha
+				+ ", status=" + status + ", genero=" + genero + ", tipo=" + tipo + "]";
 	}
-
-
 
 }

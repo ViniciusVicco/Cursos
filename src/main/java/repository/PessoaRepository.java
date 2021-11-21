@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import application.RepositoryException;
+import application.Util;
 import models.Aluno;
 import models.Curso;
 import models.Pessoa;
@@ -34,12 +35,29 @@ public class PessoaRepository extends Repository<Pessoa> {
 //
 //	}
 
-	public Pessoa efetuaLogin(String login, String senha) {
+	public Pessoa findByEmail(String email)  {
+		try {
+			EntityManager em = getEntityManager();
+			Query query = em.createQuery("SELECT p FROM Pessoa p where p.email = :email");
+			query.setParameter("email", email);
+			pessoa = (Pessoa) query.getSingleResult();
+			Util.addInfoMessage("Verifique sua caixa de e-mail");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Util.addErrorMessage("Não foi possível encontrar este e-mail");
+			return null;
+		}
+
+		return pessoa;
+
+	}
+
+	public Pessoa efetuaLogin(String email, String senha) {
 
 		try {
 			EntityManager em = getEntityManager();
-			Query query = em.createQuery("SELECT p FROM Pessoa p where p.login = :login and p.senha = :senha");
-			query.setParameter("login", login);
+			Query query = em.createQuery("SELECT p FROM Pessoa p where p.email = :email and p.senha = :senha");
+			query.setParameter("email", email);
 			query.setParameter("senha", senha);
 
 			pessoa = (Pessoa) query.getResultList().get(0);
@@ -51,4 +69,5 @@ public class PessoaRepository extends Repository<Pessoa> {
 		System.out.println(pessoa);
 		return pessoa;
 	}
+
 }
