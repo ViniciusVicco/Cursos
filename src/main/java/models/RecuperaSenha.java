@@ -9,6 +9,12 @@ import javax.persistence.ManyToOne;
 @Entity
 public class RecuperaSenha extends DefaultEntity {
 
+	@Override
+	public String toString() {
+		return "RecuperaSenha [codigo=" + codigo + ", dataLimite=" + dataLimite + ", ativo=" + ativo + ", pessoa="
+				+ pessoa + "]";
+	}
+
 	private String codigo;
 	private LocalDateTime dataLimite;
 	private boolean ativo;

@@ -17,16 +17,35 @@
 				</p:messages>
 				<p:panel>
 					<f:facet name="header">
-						<h2>Esqueci minha senha</h2>
+						<h2>Alterar Senha</h2>
 					</f:facet>
 
 					<h:panelGrid columns="2">
-						<p:outputLabel value="E-mail * " />
+						<p:outputLabel value="Código * " />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
 								<p:inputText style="width:250px"
-									requiredMessage="E-mail obrigatório" required="true"
-									value="#{esqueceuSenhaController.email}" />
+									value="#{alteraSenhaController.codigo}" />
+
+
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Nova Senha * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{alteraSenhaController.senha}" />
+
+
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Confirma Senha * " />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText style="width:250px"
+									value="#{alteraSenhaController.confirmaSenha}" />
 
 
 							</div>
@@ -36,16 +55,11 @@
 
 					</h:panelGrid>
 					<div style="padding-top: 50px">
-						<h:panelGrid columns="2">
-							<p:commandButton value="Enviar recuperação"
-								actionListener="#{esqueceuSenhaController.enviar()}"
-								process="esqueceusenha" update="esqueceusenha"></p:commandButton>
-							<p:commandButton value="Já possui o código ? Clique aqui"
-								action="recuperasenha.xhtml?faces-redirect=true" process="@this"
-								update="@this"></p:commandButton>
-						</h:panelGrid>
+						<p:commandButton
+							actionListener="#{alteraSenhaController.trocaSenha()}"
+							id="botaocodigo" value="Redefinir Senha" process="esqueceusenha"
+							update="esqueceusenha"></p:commandButton>
 					</div>
-
 				</p:panel>
 			</h:form>
 		</h:body>

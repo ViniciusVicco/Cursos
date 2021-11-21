@@ -35,7 +35,7 @@ public class PessoaRepository extends Repository<Pessoa> {
 //
 //	}
 
-	public Pessoa findByEmail(String email)  {
+	public Pessoa findByEmail(String email) {
 		try {
 			EntityManager em = getEntityManager();
 			Query query = em.createQuery("SELECT p FROM Pessoa p where p.email = :email");
@@ -50,6 +50,20 @@ public class PessoaRepository extends Repository<Pessoa> {
 
 		return pessoa;
 
+	}
+
+	public Pessoa findById(int id) {
+		try {
+			EntityManager em = getEntityManager();
+			Query query = em.createQuery("SELECT p FROM Pessoa p where p.id = :id");
+			query.setParameter("id", id);
+			pessoa = (Pessoa) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return pessoa;
 	}
 
 	public Pessoa efetuaLogin(String email, String senha) {
