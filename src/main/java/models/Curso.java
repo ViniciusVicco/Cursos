@@ -47,10 +47,6 @@ public class Curso {
 		this.professor = professor;
 	}
 
-	@NotNull
-	@Lob
-	private byte[] imagem;
-
 	@Column(nullable = false)
 	private String descricao;
 	@Transient
@@ -58,13 +54,6 @@ public class Curso {
 	private int horas;
 	private LocalDate datacriacao;
 
-	public byte[] getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(byte[] imagem) {
-		this.imagem = imagem;
-	}
 
 	public Integer getId() {
 		return id;

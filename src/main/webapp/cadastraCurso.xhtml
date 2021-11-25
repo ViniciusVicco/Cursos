@@ -10,9 +10,9 @@
 			<link href="resources/css/bootstrap.css" rel="stylesheet" />
 		</h:head>
 		<h:body>
-			<h:form>
+			<h:form id="formMain">
 
-				<p:messages id="messages" showDetail="true" closable="true">
+				<p:messages id="messages" showDetail="false" closable="true">
 
 				</p:messages>
 
@@ -69,6 +69,12 @@
 								completeMethod="#{cursoController.completeCategorias}"
 								effect="blind" scrollHeight="250" />
 						</h:panelGroup>
+						<h:form id="imageForm">
+							<p:fileUpload value="#{fileUploadView.file}" mode="simple"
+								label="Escolher Capa" skinSimple="true" auto="true"
+								process="imageForm" update="imageForm"
+								listener="#{fileUploadView.handleFileUpload}" />
+						</h:form>
 					</h:panelGrid>
 
 					<p:commandButton value="Criar Uma nova categoria" type="button"
@@ -96,6 +102,13 @@
 				</p:panel>
 				<p:dataTable id="table" var="obj"
 					value="#{cursoController.listaCursos}">
+					<p:column headerText="Capa">
+						<div align="left" style="float: left; position: relative;">
+							<img class="img-responsive"
+								style="max-width: 80px !important; max-height: 80px !important;"
+								src="/faces/img-usuario/" />
+						</div>
+					</p:column>
 					<p:column headerText="Id">
 						<h:outputText value="#{obj.id}"></h:outputText>
 					</p:column>
