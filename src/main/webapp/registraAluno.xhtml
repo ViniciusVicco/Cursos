@@ -46,10 +46,12 @@
 						</h:panelGroup>
 
 						<p:outputLabel value="Senha" />
-						<p:inputText value="#{registraAlunoController.aluno.senha}" />
+						<p:inputText type="password"
+							value="#{registraAlunoController.aluno.senha}" />
 
 						<p:outputLabel value="Senha" />
-						<p:inputText value="#{registraAlunoController.confirmaSenha}" />
+						<p:inputText type="password"
+							value="#{registraAlunoController.confirmaSenha}" />
 
 						<div class="ui-inputgroup">
 							<p:selectOneMenu required="true"

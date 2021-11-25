@@ -20,15 +20,19 @@ public class Curso {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NotNull(message = "Valor não pode ser vazio")
 	@Column(nullable = false)
 	private int valor;
+	@NotNull(message = "Nome não pode ser vazio")
 	@Column(nullable = false)
 	private String nome;
 	@ManyToOne
 	@JoinColumn(name = "professor")
+	@NotNull(message = "Você precisa estar logado como professor!")
 	private Professor professor;
 	@ManyToOne
 	@JoinColumn(name = "categoria")
+	@NotNull(message = "Categoria não pode ser vazio")
 	private Categoria categoria;
 
 	public Categoria getCategoria() {
@@ -53,7 +57,6 @@ public class Curso {
 	private String nomeDescricao;
 	private int horas;
 	private LocalDate datacriacao;
-
 
 	public Integer getId() {
 		return id;

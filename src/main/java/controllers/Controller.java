@@ -27,13 +27,18 @@ public abstract class Controller<T> {
 	public void salvar() {
 		try {
 			getRepository().save(getEntity());
-			limpar();
+			// limpar();
 			Util.addInfoMessage("Registro realizado com sucesso.");
 		} catch (RepositoryException e) {
 
 			Util.addErrorMessage("Problema ao salvar, tente novamente ou entre em contato com a TI.");
 		}
 
+	}
+
+	public void salvarPrincipal() throws RepositoryException {
+		setEntity(getRepository().save(getEntity()));
+		Util.addInfoMessage("Registro salvo com sucesso");
 	}
 
 	public void registrar() {

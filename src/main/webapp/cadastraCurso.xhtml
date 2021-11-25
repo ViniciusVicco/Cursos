@@ -70,10 +70,10 @@
 								effect="blind" scrollHeight="250" />
 						</h:panelGroup>
 						<h:form id="imageForm">
-							<p:fileUpload value="#{fileUploadView.file}" mode="simple"
-								label="Escolher Capa" skinSimple="true" auto="true"
-								process="imageForm" update="imageForm"
-								listener="#{fileUploadView.handleFileUpload}" />
+							<p:fileUpload value="#{cursoController.fotoInputStream}"
+								mode="simple" label="Escolher Capa" skinSimple="true"
+								auto="true" process="imageForm" update="imageForm"
+								listener="#{cursoController.upload}" />
 						</h:form>
 					</h:panelGrid>
 

@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -13,6 +15,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.model.file.UploadedFile;
 
 import application.JPAUtil;
 import application.RepositoryException;
@@ -35,25 +40,49 @@ public class CursoController extends Controller<Curso> implements Serializable {
 	private List<Curso> listaCursos;
 	private Curso curso = new Curso();
 
+	private InputStream fotoInputStream = null;
+
+	public void upload(FileUploadEvent event) {
+		//Checar porque o inputstream não funciona
+		UploadedFile uploadFile = event.getFile();
+		System.out.println("nome arquivo: " + uploadFile.getFileName());
+		System.out.println("tipo: " + uploadFile.getContentType());
+		System.out.println("tamanho: " + uploadFile.getSize());
+
+		if (uploadFile.getContentType().equals("image/png")) {
+			try {
+				setFotoInputStream(uploadFile.getInputStream());
+				System.out.println("inputStream: " + uploadFile.getInputStream().toString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Util.addInfoMessage("Upload realizado com sucesso.");
+		} else {
+			Util.addErrorMessage("O tipo da image deve ser png.");
+		}
+
+	}
+
 	public Curso getCurso() {
 		if (curso == null) {
 			curso = new Curso();
 		}
 		return curso;
 	}
-	
-	public List<Categoria> completeCategorias(String query){
-		if(query == null) {
-			 return new ArrayList<Categoria>();
+
+	public List<Categoria> completeCategorias(String query) {
+		if (query == null) {
+			return new ArrayList<Categoria>();
 		}
 		CategoriaRepository repo = new CategoriaRepository();
-		 try {
-			return repo.findByNome(query,null);
+		try {
+			return repo.findByNome(query, null);
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return new ArrayList<Categoria>();
+		return new ArrayList<Categoria>();
 	}
 
 	public void setCurso(Curso curso) {
@@ -104,11 +133,30 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		// TODO Auto-generated method stub
 		LocalDate localDate = LocalDate.now();
 		Professor professor = (Professor) Session.getInstance().get("user");
-		if(professor != null) {
-			curso.setProfessor(professor);
+		if (professor != null) {
+			try {
+				curso.setProfessor(professor);
+				curso.setDatacriacao(localDate);
+				salvarPrincipal();
+				if(getFotoInputStream() != null) {
+					System.out.println(getEntity().getId());
+					if(!Util.salvaCapaCurso(fotoInputStream, "png", getEntity().getId())) {
+						Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem");
+						return;
+					}
+				}
+				limpar();
+			} catch (RepositoryException e) {
+				e.printStackTrace();
+			}
+
+
+			if (getFotoInputStream() != null) {
+
+			}
+		} else {
+		Util.addWarnMessage("É necessário estar logado como professor para salvar!");
 		}
-		curso.setDatacriacao(localDate);
-		 super.salvar();
 	}
 
 	@Override
@@ -123,6 +171,14 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		super.limpar();
 		listaCursos = null;
 		setCurso(null);
+	}
+
+	public InputStream getFotoInputStream() {
+		return fotoInputStream;
+	}
+
+	public void setFotoInputStream(InputStream fotoInputStream) {
+		this.fotoInputStream = fotoInputStream;
 	}
 
 }
