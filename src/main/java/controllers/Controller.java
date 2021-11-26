@@ -36,9 +36,11 @@ public abstract class Controller<T> {
 
 	}
 
-	public void salvarPrincipal() throws RepositoryException {
-		setEntity(getRepository().save(getEntity()));
+	public T salvarPrincipal() throws RepositoryException {
+		entity = getRepository().save(getEntity());
+		System.out.print(entity);
 		Util.addInfoMessage("Registro salvo com sucesso");
+		return entity;
 	}
 
 	public void registrar() {

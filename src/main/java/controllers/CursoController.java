@@ -43,7 +43,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 	private InputStream fotoInputStream = null;
 
 	public void upload(FileUploadEvent event) {
-		//Checar porque o inputstream não funciona
+		// Checar porque o inputstream não funciona
 		UploadedFile uploadFile = event.getFile();
 		System.out.println("nome arquivo: " + uploadFile.getFileName());
 		System.out.println("tipo: " + uploadFile.getContentType());
@@ -137,25 +137,28 @@ public class CursoController extends Controller<Curso> implements Serializable {
 			try {
 				curso.setProfessor(professor);
 				curso.setDatacriacao(localDate);
-				salvarPrincipal();
-				if(getFotoInputStream() != null) {
+				curso = salvarPrincipal();
+				 
+				System.out.println(getFotoInputStream());
+				if (getFotoInputStream() != null) {
 					System.out.println(getEntity().getId());
-					if(!Util.salvaCapaCurso(fotoInputStream, "png", getEntity().getId())) {
+					if (!Util.salvaCapaCurso(fotoInputStream, "png", curso.getId())) {
 						Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem");
 						return;
 					}
+				} else {
+					System.out.println("Imagem Vazia");
 				}
 				limpar();
 			} catch (RepositoryException e) {
 				e.printStackTrace();
 			}
 
-
 			if (getFotoInputStream() != null) {
 
 			}
 		} else {
-		Util.addWarnMessage("É necessário estar logado como professor para salvar!");
+			Util.addWarnMessage("É necessário estar logado como professor para salvar!");
 		}
 	}
 
