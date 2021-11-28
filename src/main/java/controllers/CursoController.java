@@ -162,6 +162,10 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		}
 	}
 
+	public void getImage() {
+		
+	}
+	
 	@Override
 	public Curso getEntity() {
 		if (entity == null)

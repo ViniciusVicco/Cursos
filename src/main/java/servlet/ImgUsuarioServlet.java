@@ -31,19 +31,18 @@ public class ImgUsuarioServlet extends HttpServlet {
 		String subDiretorioProfessores = "";
 
 		String diretorio = "C:\\Users\\vinic\\Pictures\\curso\\";
-		if (nome != null) {
-			if (nome.contains("curso")) {
-				diretorio = "C:\\Users\\vinic\\Pictures\\curso\\";
-			}
-		}
+
+		System.out.println(PATH_IMAGES);
+		System.out.println(PATH_IMAGES_USUARIO);
+		System.out.println(diretorio);
 
 		// montando a imagem com e endereco do servidor
 		// /home/janio/images/usuario/2.png
-		File image = new File(diretorio + "sem_foto.png");
+		File image = new File(diretorio + nome);
 
 		// se o nome da imagem for nulo ou se a imagem nao existir, enviar uma imagem
 		// padrao
-		if ((nome != null) || (!image.exists())) {
+		if ((nome == null) || (!image.exists())) {
 			File img = new File(diretorio + "sem_foto.png");
 			// montando objeto de resposta
 			response.reset();
