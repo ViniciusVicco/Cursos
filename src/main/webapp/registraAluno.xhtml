@@ -53,6 +53,9 @@
 						<p:inputText type="password"
 							value="#{registraAlunoController.confirmaSenha}" />
 
+
+
+
 						<div class="ui-inputgroup">
 							<p:selectOneMenu required="true"
 								requiredMessage="Selecione ao menos um gênero biologico"
@@ -66,7 +69,10 @@
 
 
 
+
 					</h:panelGrid>
+					<p:outputLabel value="Ao cadastrar, você concorda com os " />
+					<p:commandLink onclick="PF('dlg3').show()"> termos de uso.</p:commandLink>
 
 					<f:facet name="footer">
 						<h:panelGrid columns="3">
@@ -86,7 +92,23 @@
 					</f:facet>
 				</p:panel>
 			</h:form>
+			<p:dialog header="Termos de uso" widgetVar="dlg3" minHeight="40"
+				width="500" showEffect="fade">
+				<h:form id="crudCategorias">
+					<p:panel>
+						<f:facet name="header">
+							<h2>Consumidor</h2>
+						</f:facet>
 
+						<p>Confirmo que manterei minha senha sigilosa sem compartilhar
+							informações da conta a terceiros, resultando no bloqueio da minha
+							conta sem aviso prévio.</p>
+
+
+
+					</p:panel>
+				</h:form>
+			</p:dialog>
 		</h:body>
 	</ui:define>
 </ui:composition>

@@ -10,34 +10,47 @@
 			<h:form>
 				<p:dataTable id="table" var="obj"
 					value="#{cursoController.listaCursos}">
-					<p:column headerText="Capa">
-						<div align="left" style="float: left; position: relative;">
-							<img class="img-responsive"
-								style="max-width: 80px !important; max-height: 80px !important;"
-								src="/faces/img-usuario/" />
+					<p:column>
+
+						<div class="card mb-4 rounded-3 shadow-sm border-primary">
+
+							<div
+								class="card-header py-3 text-white bg-primary border-primary">
+								<h4 class="my-0 fw-normal">Curso</h4>
+							</div>
+							<div align="center" style="float: right; position: relative;">
+								<img class="img-responsive"
+									style="max-width: 100% !important; max-height: 300px !important;"
+									src="/Cursos/faces/img-usuario?nome=#{obj.id}.png" />
+							</div>
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title">
+									<h:outputLabel value="#{obj.nome}"></h:outputLabel>
+									<small class="text-muted fw-light"> <h:outputLabel
+											value="/#{obj.categoria.nome}"></h:outputLabel>
+									</small>
+								</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<li><h:outputLabel value="Descrição: #{obj.descricao}"></h:outputLabel></li>
+									<li><h:outputLabel value="Preço: R$ #{obj.valor}"></h:outputLabel>
+									</li>
+									<li><h:outputLabel value="Duração: #{obj.horas} horas"></h:outputLabel>
+									</li>
+									<li>Acesso para vida toda</li>
+									<li><h:outputLabel value="Criado em: #{obj.datacriacao}"></h:outputLabel></li>
+									<li><h:outputLabel
+											value="Professor: #{obj.professor.nome}">
+										</h:outputLabel></li>
+
+								</ul>
+
+								<h:commandButton type="button"
+									value="Adicionar
+									Ao Carrinho"
+									class="w-100 btn btn-lg btn-primary"></h:commandButton>
+
+							</div>
 						</div>
-					</p:column>
-					<p:column headerText="Id">
-						<h:outputText value="#{obj.id}"></h:outputText>
-					</p:column>
-					<p:column headerText="Valor">
-						<h:outputText value="#{obj.valor}"></h:outputText>
-					</p:column>
-					<p:column headerText="Nome">
-						<h:outputText value="#{obj.nome}"></h:outputText>
-					</p:column>
-					<p:column headerText="Descrição">
-						<h:outputText value="#{obj.descricao}"></h:outputText>
-					</p:column>
-
-					<p:column headerText="Horas">
-						<h:outputText value="#{obj.horas}"></h:outputText>
-					</p:column>
-					<p:column headerText="">
-						<p:commandButton value="Editar" styleClass="ui-button-warning"
-							actionListener="#{cursoController.editar(obj.id)}"
-							process="@this" update="@form table" />
-
 					</p:column>
 
 

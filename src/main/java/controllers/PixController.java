@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
@@ -59,6 +60,7 @@ public class PixController extends Controller<Pix> implements Serializable {
 
 	public List<FormaPagamento> getListaPix() {
 		if (listaPix == null) {
+			listaPix = new ArrayList<FormaPagamento>();
 			listaPix = getListaCartao();
 		}
 		System.out.print(listaPix.get(0));
