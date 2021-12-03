@@ -1,4 +1,6 @@
 package models;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -8,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy =  InheritanceType.SINGLE_TABLE)
@@ -28,6 +33,9 @@ public class FormaPagamento  {
 	private double desconto;
 	@Column(insertable = false, updatable = false)
 	private String tipo;
+	@OneToMany(mappedBy = "formaPagamento")
+	private List<Compra> compra;
+
 
 	public int getId() {
 		return id;

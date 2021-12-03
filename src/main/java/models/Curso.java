@@ -2,6 +2,7 @@ package models;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +36,9 @@ public class Curso {
 	@JoinColumn(name = "categoria")
 	@NotNull(message = "Categoria não pode ser vazio")
 	private Categoria categoria;
+	@OneToMany(mappedBy = "curso")
+	private List<Compra> listaCompras;
+	
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -120,5 +125,7 @@ public class Curso {
 	public void setDatacriacao(LocalDate datacriacao) {
 		this.datacriacao = datacriacao;
 	}
+
+
 
 }
