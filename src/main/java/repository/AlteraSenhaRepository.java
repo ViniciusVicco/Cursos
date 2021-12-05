@@ -17,13 +17,13 @@ public class AlteraSenhaRepository extends Repository<CursoController> {
 		RecuperaSenha recuperaSenha;
 		try {
 			EntityManager em = getEntityManager();
-			Query query = em.createQuery("SELECT r FROM RecuperaSenha r where r.codigo = :codigo");
+			Query query = em.createQuery("SELECT r FROM RecuperaSenha r where r.codigo = :codigo and ativo = true");
 			query.setParameter("codigo", codigo);
 			recuperaSenha = (RecuperaSenha) query.getSingleResult();
 			System.out.println("Recuperador encontrado" + recuperaSenha.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
-			Util.addErrorMessage("Não foi possível encontrar este e-mail");
+			Util.addErrorMessage("Não foi possível encontrar o código, pode estar inativo ou inexistente");
 			return null;
 		}
 

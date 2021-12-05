@@ -8,6 +8,11 @@
 	<ui:define name="conteudo">
 		<h:body>
 			<h:form>
+
+				<p:messages id="messages" showDetail="false" closable="true">
+
+				</p:messages>
+
 				<div class="container" style="margin-top: 10%; margin-bottom: 10%">
 					<!-- Example row of columns -->
 					<div class="row">
@@ -33,12 +38,11 @@
 						</div>
 						<div class="col-md-4">
 							<h2>Dados Pessoais</h2>
-							<p>Revise seus dados e mantenha sempre o seu telefone
-								atualizado para melhor segurança</p>
-							<p>
-								<a class="btn btn-secondary" href="#" role="button">Dados
-									pessoais »</a>
-							</p>
+							<p>Revise seus dados e os mantenha atualizados para melhor
+								segurança</p>
+							<h:commandLink
+								actionListener="#{perfilController.redirecionaDadosPessoais()}"
+								class="btn btn-secondary" role="button">Atualizar Dados Pessoais »</h:commandLink>
 						</div>
 					</div>
 

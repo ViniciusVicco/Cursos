@@ -42,12 +42,40 @@ public class EsqueceuSenhaController implements Serializable {
 			String codigo = geraCodigoRandomico();
 			recuperaSenhaModel.setCodigo(codigo);
 			recuperaSenhaModel.setPessoa(usuario);
+			recuperaSenhaModel.setAtivo(true);
 			LocalDateTime date = pegaDataMaisUmDia();
 			recuperaSenhaModel.setDataLimite(date);
 			if (salvarRecuperacaoSenha(recuperaSenhaModel)) {
 
 				Email email = new Email(usuario.getEmail(), "Recuperar Senha",
 						"Siga as nossas instruções para recuperar sua senha, utilize o código " + codigo
+								+ " Válido até: " + date.toString());
+				if (!email.enviar()) {
+					Util.addErrorMessage("Ops, não foi possível enviar cheque se o e-mail está correto");
+				}
+			} else {
+				Util.addErrorMessage("Ocorreu um erro ao salvar o registro do código");
+			}
+		}
+	}
+
+	public void enviarCodigoPerfil() {
+		PessoaRepository repo = new PessoaRepository();
+		Pessoa usuario;
+
+		usuario = repo.findByEmail(email);
+		if (usuario != null) {
+			RecuperaSenha recuperaSenhaModel = new RecuperaSenha();
+			String codigo = geraCodigoRandomico();
+			recuperaSenhaModel.setCodigo(codigo);
+			recuperaSenhaModel.setPessoa(usuario);
+			recuperaSenhaModel.setAtivo(true);
+			LocalDateTime date = pegaDataMaisUmDia();
+			recuperaSenhaModel.setDataLimite(date);
+			if (salvarRecuperacaoSenha(recuperaSenhaModel)) {
+
+				Email email = new Email(usuario.getEmail(), "Atualização do Perfil",
+						"Siga as nossas instruções para atualizar seu perfil, utilize o código " + codigo
 								+ " Válido até: " + date.toString());
 				if (!email.enviar()) {
 					Util.addErrorMessage("Ops, não foi possível enviar cheque se o e-mail está correto");

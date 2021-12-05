@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:body>
+
+			<h:form id="registroDeAlunoForm">
+				<p:messages id="messages" showDetail="false" closable="true">
+
+				</p:messages>
+
+
+
+				<p:panel>
+
+
+					<style>
+.one {
+	width: 70%;
+}
+
+.two {
+	width: 30%;
+}
+</style>
+
+
+
+					<h:panelGrid columns="2">
+						<p:outputLabel value="nome" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText value="#{dadosPessoaisController.pessoa.nome}" />
+							</div>
+						</h:panelGroup>
+						<p:outputLabel value="e-mail" />
+						<p:inputText value="#{dadosPessoaisController.pessoa.email}" />
+
+						<p:outputLabel value="cpf" />
+						<h:panelGroup>
+							<div class="ui-inputgroup">
+								<p:inputText value="#{dadosPessoaisController.pessoa.cpf}" />
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Senha" />
+						<p:inputText type="password"
+							value="#{dadosPessoaisController.pessoa.senha}" />
+
+						<p:outputLabel value="Senha" />
+						<p:inputText type="password"
+							value="#{dadosPessoaisController.confirmaSenha}" />
+
+						<p:commandLink value="Código" onclick="PF('dlg3').show()"></p:commandLink>
+						<p:inputText type="password" placeholder="C-000000"
+							value="#{dadosPessoaisController.codigo}" />
+
+
+						<div class="ui-inputgroup">
+							<p:selectOneMenu required="true"
+								requiredMessage="Selecione ao menos um gênero biologico"
+								value="#{dadosPessoaisController.pessoa.genero}">
+								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItems value="#{registraAlunoController.listaTipoPeso}"
+									var="obj" itemLabel="#{obj.label}" />
+							</p:selectOneMenu>
+
+						</div>
+
+
+
+
+					</h:panelGrid>
+
+					<f:facet name="footer">
+						<h:panelGrid columns="3">
+							<p:commandButton value="Atualizar Dados"
+								actionListener="#{dadosPessoaisController.atualizarDados}"
+								process="registroDeAlunoForm" update="registroDeAlunoForm" />
+
+
+							<p:commandButton value="Reenviar Código"
+								actionListener="#{dadosPessoaisController.reenviarCodigo}"
+								process="registroDeAlunoForm" update="registroDeAlunoForm" />
+
+
+
+
+						</h:panelGrid>
+					</f:facet>
+				</p:panel>
+			</h:form>
+
+		</h:body>
+		<p:dialog header="Código no E-mail" widgetVar="dlg3" minHeight="40"
+			width="500" showEffect="fade">
+			<h:form id="crudCategorias">
+				<p:panel>
+					<f:facet name="header">
+						<h2>Informações</h2>
+					</f:facet>
+
+					<p>Ao clicar nos seus dados pessoais, enviamos um código para
+						alteração dos seus dados, caso não queira alterar, basta ignorar.
+						Para garantir sua segurança essa atualização requer duas etapas de
+						autorização</p>
+
+
+
+				</p:panel>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>
