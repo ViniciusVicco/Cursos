@@ -43,17 +43,23 @@
 						<p:outputLabel value="cpf" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText value="#{dadosPessoaisController.pessoa.cpf}" />
+								<p:inputMask id="CPF" size="20" mask="999.999.999-99"
+									required="true" value="#{dadosPessoaisController.pessoa.cpf}"
+									requiredMessage="Campo cpf é obrigatório">
+
+								</p:inputMask>
 							</div>
 						</h:panelGroup>
 
 						<p:outputLabel value="Senha" />
 						<p:inputText type="password"
-							value="#{dadosPessoaisController.pessoa.senha}" />
+							value="#{dadosPessoaisController.pessoa.senha}" required="true"
+							requiredMessage="Senha é um campo obrigatório" />
 
 						<p:outputLabel value="Senha" />
 						<p:inputText type="password"
-							value="#{dadosPessoaisController.confirmaSenha}" />
+							value="#{dadosPessoaisController.confirmaSenha}" required="true"
+							requiredMessage="Senha é um campo obrigatório" />
 
 						<p:commandLink value="Código" onclick="PF('dlg3').show()"></p:commandLink>
 						<p:inputText type="password" placeholder="C-000000"
