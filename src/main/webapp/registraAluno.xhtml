@@ -8,11 +8,11 @@
 	<ui:define name="conteudo">
 		<h:body>
 			<h:form id="registroDeAlunoForm">
+				<div style="width: 80%;">
+					<p:messages id="messages" showDetail="false" closable="true">
 
-				<p:messages id="messages" showDetail="false" closable="true">
-
-				</p:messages>
-
+					</p:messages>
+				</div>
 				<p:panel>
 
 
@@ -32,26 +32,34 @@
 						<p:outputLabel value="nome" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText value="#{registraAlunoController.aluno.nome}" />
+								<p:inputText value="#{registraAlunoController.aluno.nome}"
+									required="true" requiredMessage="Nome é obrigatório" />
 							</div>
 						</h:panelGroup>
 						<p:outputLabel value="e-mail" />
-						<p:inputText value="#{registraAlunoController.aluno.email}" />
+						<p:inputText value="#{registraAlunoController.aluno.email}"
+							required="true" requiredMessage="E-mail é obrigatório" />
 
 						<p:outputLabel value="cpf" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText value="#{registraAlunoController.aluno.cpf}" />
+								<p:inputMask id="CPF" size="20" mask="999.999.999-99"
+									required="true" value="#{registraAlunoController.aluno.cpf}"
+									requiredMessage="Campo obrigatório não preenchido">
+
+								</p:inputMask>
 							</div>
 						</h:panelGroup>
 
 						<p:outputLabel value="Senha" />
 						<p:inputText type="password"
-							value="#{registraAlunoController.aluno.senha}" />
+							value="#{registraAlunoController.aluno.senha}" required="true"
+							requiredMessage="senha é obrigatória" />
 
 						<p:outputLabel value="Senha" />
 						<p:inputText type="password"
-							value="#{registraAlunoController.confirmaSenha}" />
+							value="#{registraAlunoController.confirmaSenha}" required="true"
+							requiredMessage="senha é obrigatória" />
 
 
 

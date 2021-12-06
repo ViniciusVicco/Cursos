@@ -9,9 +9,11 @@
 		<h:body>
 			<h:form id="registroDeProf">
 
-				<p:messages id="messages" showDetail="false" closable="true">
+				<div style="width: 80%;">
+					<p:messages id="messages" showDetail="false" closable="true">
 
-				</p:messages>
+					</p:messages>
+				</div>
 
 				<p:panel>
 
@@ -32,8 +34,7 @@
 							<div class="ui-inputgroup">
 								<p:inputText style="width:250px"
 									value="#{registraProfessorController.professor.nome}"
-									required="true"
-									requiredMessage="Nome do curso é um campo obrigatório" />
+									required="true" requiredMessage="Nome é um campo obrigatório" />
 								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
 									<onclick="PF('dlg').show()" -->
 
@@ -43,8 +44,12 @@
 						<h:panelGroup>
 							<div class="ui-inputgroup">
 
-								<p:inputText style="width:250px"
-									value="#{registraProfessorController.professor.cpf}" />
+								<p:inputMask id="CPF" size="20" mask="999.999.999-99"
+									required="true"
+									value="#{registraProfessorController.professor.cpf}"
+									requiredMessage="Campo cpf é obrigatório">
+
+								</p:inputMask>
 							</div>
 						</h:panelGroup>
 
@@ -52,7 +57,8 @@
 						<h:panelGroup>
 							<div class="ui-inputgroup">
 
-								<p:inputText style="width:250px"
+								<p:inputText style="width:250px" required="true"
+									requiredMessage="E-mail é obrigatório"
 									value="#{registraProfessorController.professor.email}" />
 							</div>
 						</h:panelGroup>
@@ -61,7 +67,8 @@
 						<p:outputLabel value="Senha *" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText type="password" style="width:250px"
+								<p:inputText type="password" style="width:250px" required="true"
+									requiredMessage="A senha é obrigatória"
 									value="#{registraProfessorController.professor.senha}" />
 
 							</div>
@@ -70,7 +77,8 @@
 						<p:outputLabel value="Confirma Senha *" />
 						<h:panelGroup>
 							<div class="ui-inputgroup">
-								<p:inputText type="password" style="width:250px"
+								<p:inputText type="password" style="width:250px" required="true"
+									requiredMessage="A senha é obrigatória"
 									value="#{registraProfessorController.confirmaSenha}" />
 
 							</div>
