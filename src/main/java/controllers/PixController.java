@@ -10,6 +10,8 @@ import javax.inject.Named;
 import application.RepositoryException;
 import models.FormaPagamento;
 import models.Pix;
+import modelsEnum.Genero;
+import modelsEnum.TipoPix;
 import repository.FormaPagamentoRepository;
 
 @Named
@@ -20,6 +22,10 @@ public class PixController extends Controller<Pix> implements Serializable {
 
 	private Pix pix;
 	private List<FormaPagamento> listaPix;
+
+	public TipoPix[] getListaTipoPix() {
+		return TipoPix.values();
+	}
 
 	@Override
 	public Pix getEntity() {
@@ -63,7 +69,6 @@ public class PixController extends Controller<Pix> implements Serializable {
 			listaPix = new ArrayList<FormaPagamento>();
 			listaPix = getListaCartao();
 		}
-		System.out.print(listaPix.get(0));
 		return listaPix;
 	}
 

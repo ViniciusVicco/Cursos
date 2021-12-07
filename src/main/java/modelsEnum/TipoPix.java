@@ -1,7 +1,7 @@
 package modelsEnum;
 
 public enum TipoPix {
-	TELEFONE(0, "Telefone"), CPF(1, "CPF"), CHAVEALEATORIA(2, "CHAVEALEATORIA");
+	TELEFONE(0, "Telefone"), CPF(1, "CPF"), CHAVEALEATORIA(2, "Chave Aletória");
 
 	private Integer index;
 	private String label;

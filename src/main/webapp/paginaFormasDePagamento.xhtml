@@ -15,7 +15,154 @@
 					recebe seu curso na hora sem burocracia e com direito a reembolso</p>
 			</div>
 
-			
+			<div
+				style="margin-left: 525px; padding-right: 50px; margin-bottom: 50px; width: 80%; align-items: center; display: flex;">
+				<p:commandButton value="Cadastrar uma chave Pix"
+					onclick="PF('dlg3').show()"></p:commandButton>
+				<p:commandButton style="margin-left:10px" label="Pix"
+					value="Cadastrar um cartão" onclick="PF('dlg3').show()"></p:commandButton>
+			</div>
+
+			<p:dialog header="Cadastrar uma chave Pix" widgetVar="dlg3"
+				minHeight="40" width="500" showEffect="fade">
+				<h:form id="registraPix">
+
+					<p:messages id="messages" showDetail="false" closable="true">
+
+					</p:messages>
+
+
+
+
+					<style>
+</style>
+
+					<p:panel>
+
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Chave * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{pixController.pix.chave}" required="true"
+										requiredMessage="Chave pix obrigatória" />
+									<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
+
+								</div>
+
+
+
+							</h:panelGroup>
+							<p:outputLabel value="Tipo Pix *"></p:outputLabel>
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:selectOneMenu required="true"
+										requiredMessage="É obrigatório selecionar um tipo de pix"
+										value="#{pixController.listaTipoPix}">
+										<f:selectItem itemLabel="Selecione..." />
+										<f:selectItems value="#{pixController.listaTipoPix}" var="obj"
+											itemLabel="#{obj.label}" />
+									</p:selectOneMenu>
+
+								</div>
+							</h:panelGroup>
+
+
+
+
+
+
+
+
+
+						</h:panelGrid>
+						<div style="padding-top: 50px">
+							<p:commandButton value="Cadastrar Chave Pix"
+								actionListener="#{pixController.salvar()}" process="registraPix"
+								update="registraPix"></p:commandButton>
+						</div>
+					</p:panel>
+
+
+				</h:form>
+			</p:dialog>
+
+			<p:dialog header="Cadastrar Cartões" widgetVar="dlg3" minHeight="40"
+				width="650" showEffect="fade">
+				<h:form id="registraCartao">
+
+					<p:messages id="messages" showDetail="false" closable="true">
+
+					</p:messages>
+
+
+
+
+
+
+					<p:panel>
+
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Número do Cartão * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{cartaoController.cartao.numero}" required="true"
+										requiredMessage="Número do cartão obrigatório" />
+									<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
+
+								</div>
+							</h:panelGroup>
+							<p:outputLabel value="Cvv Cartão * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+
+									<p:inputText style="width:250px"
+										value="#{cartaoController.cartao.cvv}" />
+								</div>
+							</h:panelGroup>
+
+
+							<p:outputLabel value="Validade * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputMask style="width:250px" id="validade" size="7"
+										mask="99/9999" required="true"
+										value="#{cartaoController.cartao.validade}"
+										requiredMessage="Campo obrigatório não preenchido">
+
+									</p:inputMask>
+
+								</div>
+							</h:panelGroup>
+
+							<p:outputLabel value="Apelido do cartão" />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{cartaoController.cartao.apelido}" />
+
+								</div>
+							</h:panelGroup>
+
+
+
+						</h:panelGrid>
+						<div style="padding-top: 50px">
+							<p:commandButton value="Cadastrar Cartão"
+								actionListener="#{cartaoController.salvar()}"
+								process="registraCartao" update="registraCartao"></p:commandButton>
+						</div>
+					</p:panel>
+
+
+
+				</h:form>
+			</p:dialog>
 
 		</h:body>
 	</ui:define>
