@@ -16,94 +16,7 @@
 
 				</p:messages>
 
-				<p:panel>
-					<f:facet name="header">
-						<h2>Gerenciar Meus Cursos</h2>
-					</f:facet>
 
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Nome do curso * " />
-						<h:panelGroup>
-							<div class="ui-inputgroup">
-								<p:inputText style="width:250px"
-									value="#{cursoController.curso.nome}" required="true"
-									requiredMessage="Nome do curso é um campo obrigatório" />
-								<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
-									<onclick="PF('dlg').show()" -->
-
-							</div>
-						</h:panelGroup>
-						<p:outputLabel value="Descrição * " />
-						<h:panelGroup>
-							<div class="ui-inputgroup">
-
-								<p:inputText style="width:250px"
-									value="#{cursoController.curso.descricao}" />
-							</div>
-						</h:panelGroup>
-
-
-						<p:outputLabel value="Horas * " />
-						<h:panelGroup>
-							<div class="ui-inputgroup">
-								<p:inputText style="width:250px"
-									value="#{cursoController.curso.horas}" />
-
-							</div>
-						</h:panelGroup>
-
-						<p:outputLabel value="Valor *" />
-						<h:panelGroup>
-							<div class="ui-inputgroup">
-								<p:inputText style="width:250px"
-									value="#{cursoController.curso.valor}" />
-
-							</div>
-						</h:panelGroup>
-
-						<p:outputLabel value="Escolha uma categoria" />
-						<h:panelGroup>
-							<p:autoComplete id="acDelay" queryDelay="1000"
-								value="#{cursoController.curso.categoria}" var="obj"
-								itemLabel="#{obj.nome}" itemValue="#{obj}"
-								completeMethod="#{cursoController.completeCategorias}"
-								validateContentType="true" accept=".png" effect="blind"
-								scrollHeight="250" />
-						</h:panelGroup>
-						<h:form enctype="multipart/form-data">
-
-							<p:fileUpload id="fileUpload"
-								listener="#{cursoController.upload}" mode="advanced"
-								update="fileUpload @form" label="Selecione uma foto ..."
-								global="false">
-							</p:fileUpload>
-							<p:growl id="messages" showDetail="true" />
-						</h:form>
-					</h:panelGrid>
-
-					<p:commandButton value="Criar Uma nova categoria" type="button"
-						icon="pi pi-external-link" onclick="PF('dlg3').show()" />
-
-					<f:facet name="footer">
-						<h:panelGrid columns="3">
-							<p:commandButton value="Salvar"
-								actionListener="#{cursoController.salvar}" process="@all"
-								update="@form" />
-
-
-							<p:commandButton value="Limpar"
-								actionListener="#{cursoController.limpar}" process="@this"
-								update="@form" />
-
-
-
-							<p:commandButton value="Remover"
-								actionListener="#{cursoController.excluirCurso}" process="@this"
-								update="@form table" styleClass="ui-button-danger" />
-
-						</h:panelGrid>
-					</f:facet>
-				</p:panel>
 				<p:dataTable id="table" var="obj"
 					value="#{cursoController.listaCursos}">
 					<p:column headerText="Capa">
@@ -131,8 +44,8 @@
 					</p:column>
 					<p:column headerText="">
 						<p:commandButton value="Editar" styleClass="ui-button-warning"
-							actionListener="#{cursoController.editar(obj.id)}"
-							process="@this" update="@form table" />
+							actionListener="#{cursoController.carregaCurso(obj)}"
+							onclick="PF('crudCursos').show()" process="@this" update="@form" />
 
 					</p:column>
 
@@ -199,6 +112,98 @@
 							</h:panelGrid>
 						</f:facet>
 
+					</p:panel>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog header="Gerenciar Cursos" widgetVar="crudCursos"
+				minHeight="40" width="1000" height="500" showEffect="fade">
+				<h:form id="crudCursos">
+					<p:panel>
+
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Nome do curso * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{cursoController.curso.nome}" required="true"
+										requiredMessage="Nome do curso é um campo obrigatório" />
+									<!-- 	<p:button icon="pi pi-search" styleClass="ui-button-warning"
+									<onclick="PF('dlg').show()" -->
+
+								</div>
+							</h:panelGroup>
+							<p:outputLabel value="Descrição * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+
+									<p:inputText style="width:250px"
+										value="#{cursoController.curso.descricao}" />
+								</div>
+							</h:panelGroup>
+
+
+							<p:outputLabel value="Horas * " />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{cursoController.curso.horas}" />
+
+								</div>
+							</h:panelGroup>
+
+							<p:outputLabel value="Valor *" />
+							<h:panelGroup>
+								<div class="ui-inputgroup">
+									<p:inputText style="width:250px"
+										value="#{cursoController.curso.valor}" />
+
+								</div>
+							</h:panelGroup>
+
+							<p:outputLabel value="Escolha uma categoria" />
+							<h:panelGroup>
+								<p:autoComplete id="acDelay" queryDelay="1000"
+									value="#{cursoController.curso.categoria}" var="obj"
+									itemLabel="#{obj.nome}" itemValue="#{obj}"
+									completeMethod="#{cursoController.completeCategorias}"
+									validateContentType="true" accept=".png" effect="blind"
+									scrollHeight="250" />
+							</h:panelGroup>
+							<h:form enctype="multipart/form-data">
+
+								<p:fileUpload id="fileUpload"
+									listener="#{cursoController.upload}" mode="advanced"
+									update="fileUpload @form" label="Selecione uma foto ..."
+									global="false">
+								</p:fileUpload>
+								<p:growl id="messages" showDetail="true" />
+							</h:form>
+						</h:panelGrid>
+
+						<p:commandButton value="Criar Uma nova categoria" type="button"
+							icon="pi pi-external-link" onclick="PF('dlg3').show()" />
+
+						<f:facet name="footer">
+							<h:panelGrid columns="3">
+								<p:commandButton value="Salvar"
+									actionListener="#{cursoController.salvar}" process="@all"
+									update="@form" />
+
+
+								<p:commandButton value="Limpar"
+									actionListener="#{cursoController.limpar}" process="@this"
+									update="@form" />
+
+
+
+								<p:commandButton value="Remover"
+									actionListener="#{cursoController.excluirCurso}"
+									process="@this" update="@form" styleClass="ui-button-danger" />
+
+							</h:panelGrid>
+						</f:facet>
 					</p:panel>
 				</h:form>
 			</p:dialog>

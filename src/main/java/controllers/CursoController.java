@@ -151,6 +151,11 @@ public class CursoController extends Controller<Curso> implements Serializable {
 
 		}
 	}
+	
+	public void carregaCurso(Curso paramCurso) {
+		setCurso(paramCurso);
+		setEntity(paramCurso);
+	}
 
 	public List<Curso> recuperaCursos() {
 		EntityManager em = JPAUtil.getEntityManager();
