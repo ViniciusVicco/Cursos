@@ -23,13 +23,6 @@ public class Compra {
 	private LocalDate dataPagamento;
 	@ManyToOne
 	private Curso curso;
-	public FormaPagamento getFormaPagamento() {
-		return formaPagamento;
-	}
-
-	public void setFormaPagamento(FormaPagamento formaPagamento) {
-		this.formaPagamento = formaPagamento;
-	}
 
 	public Aluno getAluno() {
 		return aluno;
@@ -40,8 +33,7 @@ public class Compra {
 	}
 
 	@ManyToOne
-	private FormaPagamento formaPagamento;
-	@OneToOne
+	@JoinColumn(name = "aluno")
 	private Aluno aluno;
 
 	public Curso getCurso() {

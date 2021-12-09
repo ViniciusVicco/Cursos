@@ -38,8 +38,6 @@ public class FormaPagamento {
 	@ManyToOne
 	@JoinColumn(name = "pessoa")
 	private Pessoa pessoa;
-	@OneToMany(mappedBy = "formaPagamento")
-	private List<Compra> compra;
 
 	public int getId() {
 		return id;

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+		<h:head>
+			<link href="resources/css/bootstrap.css" rel="stylesheet" />
+		</h:head>
+		<h:body>
+
+			<h:form id="carrinhoForm">
+				<p:dataTable id="table" var="obj"
+					value="#{compraController.listaCompra}">
+					<f:facet name="Curso"></f:facet>
+					<p:column headerText="Curso">
+						<p:outputLabel value="#{obj.curso.nome}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Valor">
+						<p:outputLabel value="#{obj.curso.valor}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Horas">
+						<p:outputLabel value="#{obj.curso.horas}"></p:outputLabel>
+					</p:column>
+
+					<p:column>
+						<p:commandButton value="Remover"
+							actionListener="#{compraController.removerItem(obj)}"
+							process="@all" update="carrinhoForm table"
+							styleClass="rounded-button ui-button-danger"></p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+
+
+				<p:commandButton styleClass="rounded-button ui-button-success"
+					rendered="#{compraController.carrinhoComItens()}"
+					style="margin-left:75%; margin-top: 2%; margin-bottom:2%"
+					value="Finalizar Compra"></p:commandButton>
+				<br />
+				<h:outputLabel rendered="#{compraController.carrinhoComItens()}"
+					style="margin-left:75%" value="#{compraController.total}"></h:outputLabel>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

@@ -140,7 +140,9 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		compra.setCurso(paramCurso);
 		compra.setDataPagamento(LocalDate.now());
 		compra.setValorTotal(paramCurso.getValor());
+		compra.setAluno(aluno);
 		compraController.setCompra(compra);
+	
 		compraController.setEntity(compra);
 		compraController.salvar();
 		// Fazer Create-Drop

@@ -29,7 +29,7 @@ public class TemplateController implements Serializable {
 			return true;
 		}
 	}
-	
+
 	public boolean checaSessaoNegada() {
 		if (Session.getInstance().get("user") == null) {
 			return true;
@@ -91,6 +91,10 @@ public class TemplateController implements Serializable {
 	public void sair() {
 		Session.getInstance().set("user", null);
 		Util.redirect("login.xhtml");
+	}
+
+	public void redirecionaCarrinho() {
+		Util.redirect("carrinhoCompra.xhtml");
 	}
 
 }
