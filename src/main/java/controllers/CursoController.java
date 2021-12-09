@@ -44,6 +44,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 
 	private static final long serialVersionUID = -5954417187950125424L;
 	private List<Curso> listaCursos;
+	private List<Curso> listaCursosFiltrados;
 	private Curso curso;
 
 	private InputStream fotoInputStream = null;
@@ -158,6 +159,24 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		setEntity(paramCurso);
 	}
 
+	public List<Curso> recuperaCursosFiltrado() {
+		Professor professor = (Professor) Session.getInstance().get("user");
+		if (professor != null) {
+			EntityManager em = JPAUtil.getEntityManager();
+			TypedQuery<Curso> query = (TypedQuery<Curso>) em.createQuery("SELECT c FROM Curso as c ORDER by c.id");
+			List<Curso> results = query.getResultList();
+			List<Curso> filteredResults = new ArrayList<Curso>();
+			for (Curso curso : results) {
+				if (curso.getProfessor().getId() == professor.getId()) {
+					filteredResults.add(curso);
+				}
+			}
+			return filteredResults;
+		} else {
+			return new ArrayList<Curso>();
+		}
+	}
+
 	public List<Curso> recuperaCursos() {
 		EntityManager em = JPAUtil.getEntityManager();
 		TypedQuery<Curso> query = (TypedQuery<Curso>) em.createQuery("SELECT c FROM Curso as c ORDER by c.id");
@@ -253,6 +272,17 @@ public class CursoController extends Controller<Curso> implements Serializable {
 			}
 		}
 		return false;
+	}
+
+	public List<Curso> getListaCursosFiltrados() {
+		if(listaCursosFiltrados == null) {
+			listaCursosFiltrados = recuperaCursosFiltrado();
+		}
+		return listaCursosFiltrados;
+	}
+
+	public void setListaCursosFiltrados(List<Curso> listaCursosFiltrados) {
+		this.listaCursosFiltrados = listaCursosFiltrados;
 	}
 
 }
