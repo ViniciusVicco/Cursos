@@ -125,6 +125,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		Curso c = em.find(Curso.class, id);
 		setEntity(c);
 		setCurso(c);
+
 	}
 
 	public void salvaCursoEmCarrinho(Curso paramCurso) {
@@ -151,7 +152,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 
 		}
 	}
-	
+
 	public void carregaCurso(Curso paramCurso) {
 		setCurso(paramCurso);
 		setEntity(paramCurso);
@@ -196,6 +197,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		} else {
 			Util.addWarnMessage("É necessário estar logado como professor para salvar!");
 		}
+		getListaCursos();
 	}
 
 	public void redirecionaParaLogin() {
@@ -233,6 +235,24 @@ public class CursoController extends Controller<Curso> implements Serializable {
 
 	public void setFotoInputStream(InputStream fotoInputStream) {
 		this.fotoInputStream = fotoInputStream;
+	}
+
+	public void redirecionaParaEdicao() {
+		Util.redirect("meusCursosProfessor.xhtml");
+
+	}
+
+	public Boolean checaSeProfessorPossuiCurso(Curso paramCurso) {
+
+		if (Session.getInstance().get("user") != null) {
+			if (Session.getInstance().get("user").getClass().equals(Professor.class)) {
+				Professor professor = (Professor) Session.getInstance().get("user");
+				if (paramCurso.getProfessor().getId() == professor.getId()) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

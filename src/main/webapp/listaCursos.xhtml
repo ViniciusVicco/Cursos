@@ -45,7 +45,7 @@
 								</ul>
 
 								<p:commandButton value="Adicionar ao carrinho"
-									rendered="#{templateController.checaSessao()}"
+									rendered="#{templateController.checaAluno()}"
 									styleClass="ui-button-warning"
 									class="w-100 btn btn-lg btn-primary"
 									actionListener="#{cursoController.salvaCursoEmCarrinho(obj)}"
@@ -58,6 +58,14 @@
 									class="w-100 btn btn-lg btn-primary"
 									actionListener="#{cursoController.redirecionaParaLogin()}"
 									process="@this" update="table" />
+
+								<p:commandButton value="Acesse o painel de edição"
+									rendered="#{cursoController.checaSeProfessorPossuiCurso(obj)}"
+									styleClass="ui-button-warning"
+									class="w-100 btn btn-lg btn-primary"
+									actionListener="#{cursoController.redirecionaParaEdicao()}"
+									process="@this" update="table" />
+
 
 
 							</div>
