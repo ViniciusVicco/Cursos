@@ -12,6 +12,7 @@
 		<h:body>
 
 			<h:form id="carrinhoForm">
+				<p:growl id="message" showDetail="false" />
 				<p:dataTable id="table" var="obj"
 					value="#{compraController.listaCompra}">
 					<f:facet name="Curso"></f:facet>
@@ -28,7 +29,7 @@
 					<p:column>
 						<p:commandButton value="Remover"
 							actionListener="#{compraController.removerItem(obj)}"
-							process="@all" update="carrinhoForm table"
+							process="carrinhoForm" update="carrinhoForm table"
 							styleClass="rounded-button ui-button-danger"></p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -37,11 +38,27 @@
 
 				<p:commandButton styleClass="rounded-button ui-button-success"
 					rendered="#{compraController.carrinhoComItens()}"
+					actionListener="#{compraController.finalizarCompra}"
+					process="carrinhoForm" update="carrinhoForm table"
 					style="margin-left:75%; margin-top: 2%; margin-bottom:2%"
-					value="Finalizar Compra"></p:commandButton>
+					value="Finalizar Compra">
+					<p:confirm header="Finalizar Compra"
+						message="Deseja Finalizar sua compra ?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+
 				<br />
+
 				<h:outputLabel rendered="#{compraController.carrinhoComItens()}"
 					style="margin-left:75%" value="#{compraController.total}"></h:outputLabel>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
 			</h:form>
 		</h:body>
 	</ui:define>

@@ -7,7 +7,9 @@
 	<ui:define name="conteudo">
 
 		<h:body>
-			<h:form>
+			<h:form id="listingform">
+
+				<p:growl id="message" showDetail="false" />
 				<p:dataTable id="table" var="obj"
 					value="#{cursoController.listaCursos}">
 					<p:column>
@@ -49,7 +51,7 @@
 									styleClass="ui-button-warning"
 									class="w-100 btn btn-lg btn-primary"
 									actionListener="#{cursoController.salvaCursoEmCarrinho(obj)}"
-									process="@this" update="table" />
+									process="listingform" update="listingform" />
 
 								<p:commandButton
 									value="Clique aqui e faça login para adiquirir nossos cursos"

@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import application.RepositoryException;
 import application.Session;
+import application.Util;
 import models.Aluno;
 import models.Compra;
 import models.Curso;
@@ -101,6 +102,7 @@ public class CompraController extends Controller<Compra> implements Serializable
 		excluir();
 		listaCompra = getListaCompra();
 		getTotal();
+
 	}
 
 	public String getTotal() {
@@ -108,6 +110,13 @@ public class CompraController extends Controller<Compra> implements Serializable
 		total = valorTotal();
 
 		return total;
+	}
+
+	public void finalizarCompra() {
+		for(Compra compra : listaCompra) {
+			
+		}
+		Util.addInfoMessage("Compra finalizada");
 	}
 
 	public void setTotal(String total) {

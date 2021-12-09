@@ -136,13 +136,20 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		CompraController compraController = new CompraController();
 		Compra compra = new Compra();
 
+		for (Compra compraInterator : compraController.getListaCompra()) {
+			if (compraInterator.getCurso().getId() == paramCurso.getId()) {
+				Util.addWarnMessage("Você já adicionou este curso ao carrinho");
+				return;
+			}
+		}
+
 		compra.setAluno(null);
 		compra.setCurso(paramCurso);
 		compra.setDataPagamento(LocalDate.now());
 		compra.setValorTotal(paramCurso.getValor());
 		compra.setAluno(aluno);
 		compraController.setCompra(compra);
-	
+
 		compraController.setEntity(compra);
 		compraController.salvar();
 		// Fazer Create-Drop

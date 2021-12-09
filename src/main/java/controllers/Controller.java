@@ -28,7 +28,7 @@ public abstract class Controller<T> {
 		try {
 			getRepository().save(getEntity());
 			// limpar();
-			Util.addInfoMessage("Registro realizado com sucesso.");
+			Util.addInfoMessage("Ação bem sucedida!");
 		} catch (RepositoryException e) {
 
 			Util.addErrorMessage("Problema ao salvar, tente novamente ou entre em contato com a TI.");
