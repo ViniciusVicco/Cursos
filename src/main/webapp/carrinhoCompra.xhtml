@@ -49,8 +49,67 @@
 
 				<br />
 
-				<h:outputLabel rendered="#{compraController.carrinhoComItens()}"
-					style="margin-left:75%" value="#{compraController.total}"></h:outputLabel>
+				<p:outputLabel rendered="#{compraController.carrinhoComItens()}"
+					style="margin-left:75%" value="#{compraController.total}"></p:outputLabel>
+
+				<p:outputLabel
+					rendered="#{compraController.existePagamentoCadastrado()}"
+					style="margin-left:1%" value="Escolha um método de pagamento"></p:outputLabel>
+
+				<p:commandButton style="margin-left:1%"
+					rendered="#{compraController.usuarioLogado()}"
+					actionListener="#{compraController.redirecionaPagamento()}"
+					value="Cadastrar Forma de pagamento"></p:commandButton>
+
+
+				<p:dataTable id="pixTable" var="obj"
+					value="#{pixController.listaPix}">
+
+
+					<p:column headerText="Chave">
+						<h:outputText value="#{obj.chave}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo">
+						<h:outputText value="#{obj.tipoPix}"></h:outputText>
+					</p:column>
+					<p:column>
+						<p:commandButton
+							actionListener="#{compraController.salvaPixPagamento(obj)}"
+							process="@this" update="pixTable"
+							value="Selecionar Este Pagamento"></p:commandButton>
+					</p:column>
+
+
+				</p:dataTable>
+
+				<p:dataTable id="cartaoTable" var="obj"
+					value="#{cartaoController.listaCartao}">
+
+
+
+					<p:column headerText="Número">
+						<h:outputText value="#{obj.numero}"></h:outputText>
+					</p:column>
+					<p:column headerText="Cvv">
+						<h:outputText value="#{obj.cvv}"></h:outputText>
+					</p:column>
+					<p:column headerText="Validade">
+						<h:outputText value="#{obj.validade}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Apelido">
+						<h:outputText value="#{obj.apelido}"></h:outputText>
+					</p:column>
+					<p:column>
+						<p:commandButton
+							actionListener="#{compraController.salvaCartaoPagamento(obj)}"
+							process="@this" update="cartaoTable"
+							value="Selecionar Este Pagamento"></p:commandButton>
+					</p:column>-->
+
+
+
+				</p:dataTable>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 					responsive="true" width="350">

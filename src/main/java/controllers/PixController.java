@@ -8,6 +8,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import application.RepositoryException;
+import application.Session;
+import models.Aluno;
 import models.FormaPagamento;
 import models.Pix;
 import modelsEnum.Genero;
@@ -42,6 +44,10 @@ public class PixController extends Controller<Pix> implements Serializable {
 	}
 
 	public List<FormaPagamento> getListaCartao() {
+		Aluno aluno = (Aluno) Session.getInstance().get("user");
+		if(aluno != null) {
+			
+		
 		FormaPagamentoRepository repository = new FormaPagamentoRepository();
 		try {
 			listaPix = repository.getPagamentos("P");
@@ -49,6 +55,7 @@ public class PixController extends Controller<Pix> implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		} else { listaPix = new ArrayList<FormaPagamento>();}
 		return listaPix;
 
 	}
