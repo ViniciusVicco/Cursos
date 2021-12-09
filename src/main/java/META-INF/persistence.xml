@@ -17,6 +17,7 @@
 		<class>models.Pix</class>
 		<class>models.Professor</class>
 		<class>models.RecuperaSenha</class>
+		<class>models.Venda</class>
 
 		<properties>
 			<!-- DB Driver -->
@@ -35,7 +36,7 @@
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 			<!-- create / create-drop / update -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<!-- Show SQL in console -->
 			<property name="hibernate.show_sql" value="true" />
 			<!-- Show SQL formatted -->

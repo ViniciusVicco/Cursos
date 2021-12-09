@@ -36,12 +36,17 @@ public class Curso {
 	@JoinColumn(name = "categoria")
 	@NotNull(message = "Categoria não pode ser vazio")
 	private Categoria categoria;
-	@OneToMany(mappedBy = "curso")
-	private List<Compra> listaCompras;
-	
 
 	public Categoria getCategoria() {
 		return categoria;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setCategoria(Categoria categoria) {
@@ -62,14 +67,6 @@ public class Curso {
 	private String nomeDescricao;
 	private int horas;
 	private LocalDate datacriacao;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public int getValor() {
 		return valor;
@@ -105,7 +102,7 @@ public class Curso {
 
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", valor=" + valor + ", nome=" + nome + ", descrição=" + descricao + ", horas="
+		return "Curso [id=" + getId() + ", valor=" + valor + ", nome=" + nome + ", descrição=" + descricao + ", horas="
 				+ horas + "]";
 	}
 
@@ -125,7 +122,5 @@ public class Curso {
 	public void setDatacriacao(LocalDate datacriacao) {
 		this.datacriacao = datacriacao;
 	}
-
-
 
 }

@@ -29,6 +29,14 @@ public class TemplateController implements Serializable {
 			return true;
 		}
 	}
+	
+	public boolean checaSessaoNegada() {
+		if (Session.getInstance().get("user") == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public void redirecionaPerfil() {
 		Util.redirect("perfil.xhtml");
@@ -74,6 +82,10 @@ public class TemplateController implements Serializable {
 
 	public void redirecionaCurso() {
 		Util.redirect("cadastraCurso.xhtml");
+	}
+
+	public void redirecionaEditaCurso() {
+		Util.redirect("meusCursosProfessor.xhtml");
 	}
 
 	public void sair() {

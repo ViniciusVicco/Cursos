@@ -34,6 +34,8 @@ public class RegistraProfessorController extends Controller<Professor> implement
 		getProfessor().setSenha(senha);
 		System.out.println("Professor:" + getProfessor());
 		registrar();
+		setProfessor(null);
+		confirmaSenha = null;
 		limpar();
 	}
 

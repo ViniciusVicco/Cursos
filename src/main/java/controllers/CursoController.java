@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,14 +20,19 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import application.InheritanceUtil;
 import application.JPAUtil;
 import application.RepositoryException;
 import application.Session;
 import application.Util;
+import models.Aluno;
 import models.Categoria;
+import models.Compra;
 import models.Curso;
+import models.DefaultEntity;
 import models.Professor;
 import repository.CategoriaRepository;
+import repository.CursoRepository;
 import repository.PessoaRepository;
 
 @Named
@@ -38,7 +44,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 
 	private static final long serialVersionUID = -5954417187950125424L;
 	private List<Curso> listaCursos;
-	private Curso curso = new Curso();
+	private Curso curso;
 
 	private InputStream fotoInputStream = null;
 
@@ -121,6 +127,31 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		setCurso(c);
 	}
 
+	public void salvaCursoEmCarrinho(Curso paramCurso) {
+		Aluno aluno = (Aluno) Session.getInstance().get("user");
+		if (aluno != null) {
+			Util.addErrorMessage("Não é possível adicionar item ao carrinho, deve estar logado!");
+			Util.redirect("login.xhtml");
+		} else {
+
+			System.out.println(paramCurso);
+			CompraController compraController = new CompraController();
+			Compra compra = new Compra();
+
+			compra.setAluno(null);
+			compra.setCurso(paramCurso);
+			compra.setDataPagamento(LocalDate.now());
+			compra.setValorTotal(curso.getValor());
+			compraController.setCompra(compra);
+			compraController.setEntity(compra);
+			compraController.salvar();
+			// Fazer Create-Drop
+			// Ajustar relacionamentos
+			// Ajustar como fará a venda
+
+		}
+	}
+
 	public List<Curso> recuperaCursos() {
 		EntityManager em = JPAUtil.getEntityManager();
 		TypedQuery<Curso> query = (TypedQuery<Curso>) em.createQuery("SELECT c FROM Curso as c ORDER by c.id");
@@ -138,7 +169,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 				curso.setProfessor(professor);
 				curso.setDatacriacao(localDate);
 				curso = salvarPrincipal();
-				 
+
 				System.out.println(getFotoInputStream());
 				if (getFotoInputStream() != null) {
 					System.out.println(getEntity().getId());
@@ -162,15 +193,26 @@ public class CursoController extends Controller<Curso> implements Serializable {
 		}
 	}
 
-	public void getImage() {
-		
+	public void redirecionaParaLogin() {
+		Util.redirect("login.xhtml");
 	}
-	
+
 	@Override
 	public Curso getEntity() {
 		if (entity == null)
 			entity = new Curso();
 		return getCurso();
+	}
+
+	public void excluirCurso() {
+		CursoRepository repo = new CursoRepository();
+		try {
+			repo.removeCurso(getCurso().getId());
+		} catch (RepositoryException e) {
+			Util.addErrorMessage("Ocorreu um erro ao tentar remover o curso");
+			e.printStackTrace();
+		}
+		getListaCursos();
 	}
 
 	@Override

@@ -38,6 +38,14 @@
 				<f:ajax execute="@this" render="@this"></f:ajax>
 			</h:commandLink>
 
+			<h:commandLink value="Editar Cursos"
+				actionListener="#{templateController.redirecionaEditaCurso}"
+				rendered="#{templateController.checaProfessor()}"
+				class="navbar-section btn btn-link"
+				style="text-decoration: none;margin-top:10px">
+				<f:ajax execute="@this" render="@this"></f:ajax>
+			</h:commandLink>
+
 			<h:commandLink value="Cadastrar Curso"
 				actionListener="#{templateController.redirecionaCurso}"
 				rendered="#{templateController.checaProfessor()}"

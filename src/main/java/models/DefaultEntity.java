@@ -21,6 +21,10 @@ public class DefaultEntity {
 	
 	private Date dataAlteracao;
 	
+	private Date dataRemocao;
+	
+	private Boolean isRemovido;
+	
 	
 	@PrePersist
 	private void criarRegistroCadastro() {
@@ -71,6 +75,22 @@ public class DefaultEntity {
 			return false;
 		DefaultEntity other = (DefaultEntity) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public Boolean getIsRemovido() {
+		return isRemovido;
+	}
+
+	public void setIsRemovido(Boolean isRemovido) {
+		this.isRemovido = isRemovido;
+	}
+
+	public Date getDataRemocao() {
+		return dataRemocao;
+	}
+
+	public void setDataRemocao(Date dataRemocao) {
+		this.dataRemocao = dataRemocao;
 	}
 	
 }

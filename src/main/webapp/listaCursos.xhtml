@@ -36,7 +36,7 @@
 									</li>
 									<li><h:outputLabel value="Duração: #{obj.horas} horas"></h:outputLabel>
 									</li>
-									<li>Acesso para vida toda</li>
+									<li>Acesso: Vitalício</li>
 									<li><h:outputLabel value="Criado em: #{obj.datacriacao}"></h:outputLabel></li>
 									<li><h:outputLabel
 											value="Professor: #{obj.professor.nome}">
@@ -44,10 +44,21 @@
 
 								</ul>
 
-								<h:commandButton type="button"
-									value="Adicionar
-									Ao Carrinho"
-									class="w-100 btn btn-lg btn-primary"></h:commandButton>
+								<p:commandButton value="Adicionar ao carrinho"
+									rendered="#{templateController.checaSessao()}"
+									styleClass="ui-button-warning"
+									class="w-100 btn btn-lg btn-primary"
+									actionListener="#{cursoController.salvaCursoEmCarrinho(obj)}"
+									process="@this" update="table" />
+
+								<p:commandButton
+									value="Clique aqui e faça login para adiquirir nossos cursos"
+									rendered="#{templateController.checaSessaoNegada()}"
+									styleClass="ui-button-warning"
+									class="w-100 btn btn-lg btn-primary"
+									actionListener="#{cursoController.redirecionaParaLogin()}"
+									process="@this" update="table" />
+
 
 							</div>
 						</div>

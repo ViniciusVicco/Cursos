@@ -18,7 +18,7 @@
 
 				<p:panel>
 					<f:facet name="header">
-						<h2>Cadastrar Curso</h2>
+						<h2>Gerenciar Meus Cursos</h2>
 					</f:facet>
 
 					<h:panelGrid columns="2">
@@ -67,7 +67,8 @@
 								value="#{cursoController.curso.categoria}" var="obj"
 								itemLabel="#{obj.nome}" itemValue="#{obj}"
 								completeMethod="#{cursoController.completeCategorias}"
-								effect="blind" scrollHeight="250" />
+								validateContentType="true" accept=".png" effect="blind"
+								scrollHeight="250" />
 						</h:panelGroup>
 						<h:form enctype="multipart/form-data">
 
@@ -86,7 +87,7 @@
 					<f:facet name="footer">
 						<h:panelGrid columns="3">
 							<p:commandButton value="Salvar"
-								actionListener="#{cursoController.salvar}" process="@form"
+								actionListener="#{cursoController.salvar}" process="@all"
 								update="@form" />
 
 
@@ -97,13 +98,47 @@
 
 
 							<p:commandButton value="Remover"
-								actionListener="#{cursoController.excluir}" process="@this"
-								update="@form " styleClass="ui-button-danger" />
+								actionListener="#{cursoController.excluirCurso}" process="@this"
+								update="@form table" styleClass="ui-button-danger" />
 
 						</h:panelGrid>
 					</f:facet>
 				</p:panel>
+				<p:dataTable id="table" var="obj"
+					value="#{cursoController.listaCursos}">
+					<p:column headerText="Capa">
+						<div align="left" style="float: left; position: relative;">
+							<img class="img-responsive"
+								style="max-width: 200px !important; max-height: 200px !important;"
+								src="/Cursos/faces/img-usuario?nome=#{obj.id}.png" />
+						</div>
+					</p:column>
+					<p:column headerText="Id">
+						<h:outputText value="#{obj.id}"></h:outputText>
+					</p:column>
+					<p:column headerText="Valor">
+						<h:outputText value="#{obj.valor}"></h:outputText>
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{obj.nome}"></h:outputText>
+					</p:column>
+					<p:column headerText="Descrição">
+						<h:outputText value="#{obj.descricao}"></h:outputText>
+					</p:column>
 
+					<p:column headerText="Horas">
+						<h:outputText value="#{obj.horas}"></h:outputText>
+					</p:column>
+					<p:column headerText="">
+						<p:commandButton value="Editar" styleClass="ui-button-warning"
+							actionListener="#{cursoController.editar(obj.id)}"
+							process="@this" update="@form table" />
+
+					</p:column>
+
+
+
+				</p:dataTable>
 			</h:form>
 
 

@@ -22,8 +22,7 @@ public class Professor extends Pessoa {
 		this.cursos = cursos;
 	}
 
-	@OneToMany(mappedBy = "professor", orphanRemoval = false)
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	@OneToMany(mappedBy = "professor")
 	private List<Curso> cursos = new ArrayList<Curso>();
 
 	public double getSaldo() {

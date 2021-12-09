@@ -55,15 +55,17 @@
 
 				<p:dataTable id="table" var="obj" value="#{pixController.listaPix}">
 
-					<p:column headerText="Id">
-						<h:outputText value="#{obj.id}"></h:outputText>
-					</p:column>
+
 					<p:column headerText="Chave">
 						<h:outputText value="#{obj.chave}"></h:outputText>
 					</p:column>
-
-
-
+					<p:column headerText="Tipo">
+						<h:outputText value="#{obj.tipoPix}"></h:outputText>
+					</p:column>
+					<p:column>
+						<p:commandButton actionListener="#{pixController.remover(obj)}"
+							process="@this" update="@all" value="Remover"></p:commandButton>
+					</p:column>
 
 
 				</p:dataTable>

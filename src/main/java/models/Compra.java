@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Compra {
@@ -21,12 +22,27 @@ public class Compra {
 	@Column
 	private LocalDate dataPagamento;
 	@ManyToOne
-	@JoinColumn(name = "curso")
 	private Curso curso;
+	public FormaPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
 	@ManyToOne
 	private FormaPagamento formaPagamento;
-
-
+	@OneToOne
+	private Aluno aluno;
 
 	public Curso getCurso() {
 		return curso;

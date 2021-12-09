@@ -37,6 +37,7 @@ public class PixController extends Controller<Pix> implements Serializable {
 	@Override
 	public void salvar() {
 		pix.setAtivo(true);
+
 		super.salvar();
 	}
 
@@ -62,6 +63,12 @@ public class PixController extends Controller<Pix> implements Serializable {
 
 	public void setPix(Pix pix) {
 		this.pix = pix;
+	}
+
+	public void remover(Pix paramPix) {
+		setPix(paramPix);
+		setEntity(paramPix);
+		excluir();
 	}
 
 	public List<FormaPagamento> getListaPix() {

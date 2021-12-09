@@ -20,10 +20,27 @@ public class CursoRepository extends Repository<Curso> {
 			resultList = query.getResultList();
 
 		} catch (Exception e) {
-			new RepositoryException("Problema ao pesquisar usuários");
+			new RepositoryException("Problema ao pesquisar cursos");
 			e.printStackTrace();
 		}
 
 		return resultList;
+	}
+
+	public boolean removeCurso(int id) throws RepositoryException {
+
+		try {
+			EntityManager em = getEntityManager();
+
+			Query query = em.createQuery("DELETE FROM Curso c WHERE c.id = :id");
+			query.setParameter("id",  id );
+
+			return true;
+		} catch (Exception e) {
+			new RepositoryException("Problema ao remover curso");
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 }

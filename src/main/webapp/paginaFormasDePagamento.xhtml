@@ -18,12 +18,21 @@
 			<div
 				style="margin-left: 525px; padding-right: 50px; margin-bottom: 50px; width: 80%; align-items: center; display: flex;">
 				<p:commandButton value="Cadastrar uma chave Pix"
-					onclick="PF('dlg3').show()"></p:commandButton>
+					onclick="PF('pix').show()"></p:commandButton>
 				<p:commandButton style="margin-left:10px" label="Pix"
-					value="Cadastrar um cartão" onclick="PF('dlg3').show()"></p:commandButton>
+					value="Cadastrar um cartão" onclick="PF('creditcard').show()"></p:commandButton>
 			</div>
 
-			<p:dialog header="Cadastrar uma chave Pix" widgetVar="dlg3"
+			<div
+				style="margin-left: 525px; padding-right: 50px; margin-bottom: 50px; width: 80%; align-items: center; display: flex;">
+				<p:commandButton value="Remover uma chave Pix"
+					styleClass="ui-button-danger" onclick="PF('pixRemove').show()"></p:commandButton>
+				<p:commandButton style="margin-left:10px" label="Pix"
+					styleClass="ui-button-danger" value="Remover um cartão"
+					onclick="PF('creditcard').show()"></p:commandButton>
+			</div>
+
+			<p:dialog header="Cadastrar uma chave Pix" widgetVar="pix"
 				minHeight="40" width="500" showEffect="fade">
 				<h:form id="registraPix">
 
@@ -60,7 +69,7 @@
 								<div class="ui-inputgroup">
 									<p:selectOneMenu required="true"
 										requiredMessage="É obrigatório selecionar um tipo de pix"
-										value="#{pixController.listaTipoPix}">
+										value="#{pixController.pix.tipoPix}">
 										<f:selectItem itemLabel="Selecione..." />
 										<f:selectItems value="#{pixController.listaTipoPix}" var="obj"
 											itemLabel="#{obj.label}" />
@@ -89,8 +98,8 @@
 				</h:form>
 			</p:dialog>
 
-			<p:dialog header="Cadastrar Cartões" widgetVar="dlg3" minHeight="40"
-				width="650" showEffect="fade">
+			<p:dialog header="Cadastrar Cartões" widgetVar="creditcard"
+				minHeight="40" width="650" showEffect="fade">
 				<h:form id="registraCartao">
 
 					<p:messages id="messages" showDetail="false" closable="true">
@@ -161,6 +170,32 @@
 
 
 
+				</h:form>
+			</p:dialog>
+
+			<p:dialog header="Remove Pix" widgetVar="pixRemove" minHeight="40"
+				width="650" showEffect="fade">
+				<h:form id="removePix">
+
+					<p:panel>
+						<p:dataTable id="table" var="obj"
+							value="#{pixController.listaPix}">
+
+
+							<p:column headerText="Chave">
+								<h:outputText value="#{obj.chave}"></h:outputText>
+							</p:column>
+							<p:column headerText="Tipo">
+								<h:outputText value="#{obj.tipoPix}"></h:outputText>
+							</p:column>
+							<p:column>
+								<p:commandButton actionListener="#{pixController.remover(obj)}"
+									process="removePix" update="removePix" value="Remover"></p:commandButton>
+							</p:column>
+
+
+						</p:dataTable>
+					</p:panel>
 				</h:form>
 			</p:dialog>
 

@@ -7,7 +7,10 @@ import javax.persistence.Query;
 
 import application.JPAUtil;
 import application.RepositoryException;
+import models.DefaultEntity;
+import net.bytebuddy.implementation.bind.annotation.Super;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.OneToMany;
 
@@ -46,6 +49,8 @@ private EntityManager em = null;
 
 		
 	}
+	
+
 	
 	public void remove(T entity) throws RepositoryException {
 		try { 
