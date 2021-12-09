@@ -131,27 +131,22 @@ public class CursoController extends Controller<Curso> implements Serializable {
 
 	public void salvaCursoEmCarrinho(Curso paramCurso) {
 		Aluno aluno = (Aluno) Session.getInstance().get("user");
-		if (aluno != null) {
-			Util.addErrorMessage("Não é possível adicionar item ao carrinho, deve estar logado!");
-			Util.redirect("login.xhtml");
-		} else {
 
-			System.out.println(paramCurso);
-			CompraController compraController = new CompraController();
-			Compra compra = new Compra();
+		System.out.println(paramCurso);
+		CompraController compraController = new CompraController();
+		Compra compra = new Compra();
 
-			compra.setAluno(null);
-			compra.setCurso(paramCurso);
-			compra.setDataPagamento(LocalDate.now());
-			compra.setValorTotal(curso.getValor());
-			compraController.setCompra(compra);
-			compraController.setEntity(compra);
-			compraController.salvar();
-			// Fazer Create-Drop
-			// Ajustar relacionamentos
-			// Ajustar como fará a venda
+		compra.setAluno(null);
+		compra.setCurso(paramCurso);
+		compra.setDataPagamento(LocalDate.now());
+		compra.setValorTotal(paramCurso.getValor());
+		compraController.setCompra(compra);
+		compraController.setEntity(compra);
+		compraController.salvar();
+		// Fazer Create-Drop
+		// Ajustar relacionamentos
+		// Ajustar como fará a venda
 
-		}
 	}
 
 	public void carregaCurso(Curso paramCurso) {
@@ -275,7 +270,7 @@ public class CursoController extends Controller<Curso> implements Serializable {
 	}
 
 	public List<Curso> getListaCursosFiltrados() {
-		if(listaCursosFiltrados == null) {
+		if (listaCursosFiltrados == null) {
 			listaCursosFiltrados = recuperaCursosFiltrado();
 		}
 		return listaCursosFiltrados;
